@@ -82,3 +82,11 @@ trigger
 - Domestic Data Streamers, https://www.domesticstreamers.com/
 - Creating experiences
 - Involving Senses
+
+#### Books
+- Recomendation https://www.perlego.com/de
+- https://www.superdot.studio/visualizing-complexity-modular-information-design-handbook
+- https://www.marketcafemag.com/
+- https://www.datavisualizationsociety.org/
+- https://nightingaledvs.com/
+- https://visualisingdata.com/
