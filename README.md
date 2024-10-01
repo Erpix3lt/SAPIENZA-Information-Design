@@ -11,6 +11,7 @@ Archive of everything surrounding the course.
 - Data Visualisation, 6CFU
 - Data Storytelling and Research, 3 CFU
 - One Final Project
+- ATTEND AT LEAST 9 LESSONS, ENTER IN GOOGLE CLASSROOM
 
 ### Goals
 - Working with data
@@ -18,6 +19,22 @@ Archive of everything surrounding the course.
 - Consuming with Data
 - Decision Making with Data
 -> DATA VISUALISATION LITERACY
+
+### Phasa I
+- Data Training
+- Individual
+- No Evaluation
+- "Homework"
+- 4 WEEKS
+
+### Phase II
+- Data Desing Project Work
+- Evaluation
+- 8 WEEKS
+- Teams
+- Project Work
+- 4 Deliverables (Part of Project)
+- Final Deliverable
 
 ## Notes
 ### 01.10.2024
