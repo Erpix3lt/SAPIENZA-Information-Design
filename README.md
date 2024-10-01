@@ -1,28 +1,67 @@
-# KISD-Template
+# SAPIENZA-Information-Design
 Archive of everything surrounding the course.
 
 ## Dates
-- Exhibition in Summer (around June)
 
 ## TODOs
-- Research Biological AI
-- Look at old sketches of Flowers
 
 ## Course-Works
-- Flora <br> https://github.com/Erpix3lt/Flora
 
-## References
-### 18.10.2023
-- Max Ernst Museum, Exhibition <br> https://maxernstmuseum.lvr.de/de/ausstellungen/surreal_futures_16nv2a6w00cbh/surreal_futures.html
-- Virtual Herbaria, Archive.org <br> https://archive.org/details/texts?query=Herbaria
-- ImageNet Dataset Categories <br> https://www.image-net.org/
-- Ernst Haekel Zoologe <br> https://de.wikipedia.org/wiki/Ernst_Haeckel
+## Syllabus
+- Data Visualisation, 6CFU
+- Data Storytelling and Research, 3 CFU
+- One Final Project
 
-### 19.10.2023
-- Voynich Manuskript, Plant Chapter <br> http://www.edithsherwood.com/voynich_botanical_plants/ <br> https://www.holybooks.com/wp-content/uploads/Voynich-Manuscript.pdf
-- WordNet Relations of words, also API available <br> https://wordnet.princeton.edu/
-- OpenAI Microscope <br> https://microscope.openai.com/models
+### Goals
+- Working with data
+- Presenting Data
+- Consuming with Data
+- Decision Making with Data
+-> DATA VISUALISATION LITERACY
 
-### 31.10.2023
-- Objects and texture <br> https://www.cytter-datalab.com/
+## Notes
+### 01.10.2024
+#### Key Understandings
+- Visualisations, Representation of Data
+- High social and educational impact
+- Promote efficient understanding
+- critical impact
+- GOALS: ORGANISE, COMPARE, CONNECT, PRESENT
 
+#### Infographics vs Data Visualisation
+- Infographic: Telling a story using data, emotional
+- Data Visualisation: Presenting data, unemotional allows for id of patterns relations
+
+#### Data Journalism
+- Federica Fragapane, https://cargocollective.com/federicafragapane
+
+#### Data Map
+- Allows for wayfinding
+
+#### Data Dashboard
+- Interactive Experience, usage of UI, UX Design
+- Monitor analyse and make sende of data in real time
+- often using charts, graphs
+
+#### Data Humanism
+- Human centric side/ emotional side of data
+- challenging the purely quantitative format
+- more holisitic and menaingfull connection of data
+- http://giorgialupi.com/, Dear data project
+
+#### Data as Sound
+- Data sonifaction
+- Allowing sounds to communicate data
+- Breaching language barriers
+
+#### Data Physicalisation
+- Jules Sinsel, https://www.instagram.com/bysinsel/
+- Data as an object
+- tangible forms, three dimensional
+- engaging useres senses, touch and sight
+- Physical Money, coins
+
+#### Data Exhibit
+- Domestic Data Streamers, https://www.domesticstreamers.com/
+- Creating experiences
+- Involving Senses
