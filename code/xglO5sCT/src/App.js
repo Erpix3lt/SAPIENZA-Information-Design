@@ -20,13 +20,34 @@ const floatingTextStyle = {
   fontFamily: 'sans-serif',
   display: 'flex',
   flexDirection: 'row',
-  alignItems: 'center',
-};
+  alignItems: 'center'
+}
+
+const floatingTextStyleRight = {
+  position: 'absolute',
+  bottom: '20px',
+  right: '20px',
+  color: 'gray',
+  padding: '10px',
+  borderRadius: '5px',
+  fontSize: '14px',
+  zIndex: 10,
+  fontFamily: 'sans-serif',
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center'
+}
 
 const linkStyle = {
   color: 'lightgray',
-  textDecoration: 'none',
-};
+  textDecoration: 'none'
+}
+
+const linkStyleSecondary = {
+  color: 'gray',
+  textDecoration: 'none'
+}
+
 
 export const App = ({ images }) => (
   <>
@@ -57,7 +78,14 @@ export const App = ({ images }) => (
       <svg width="12" height="12" viewBox="0 0 24 24" style={{ marginRight: '10px', verticalAlign: 'middle' }}>
         <polygon points="22,12 2,2 2,22" fill="white" />
       </svg>
-      <a href="https://www.youtube.com/watch?v=Q9wcvFkWpsM" target="_blank" rel="noopener noreferrer" style={linkStyle}>TEDxVancouver - Jer Thorp - The Weight of Data</a>
+      <a href="https://www.youtube.com/watch?v=Q9wcvFkWpsM" target="_blank" rel="noopener noreferrer" style={linkStyle}>
+        TEDxVancouver - Jer Thorp - The Weight of Data
+      </a>
+    </div>
+    <div style={floatingTextStyleRight}>
+      <a href="https://www.jerthorp.com/" target="_blank" rel="noopener noreferrer" style={linkStyleSecondary}>
+        Jer Thorp
+      </a>
     </div>
   </>
 )
@@ -122,9 +150,9 @@ function Frame({ url, c = new THREE.Color(), ...props }) {
         </mesh>
         <Image raycast={() => null} ref={image} position={[0, 0, 0.7]} url={url} />
       </mesh>
-      <Text  maxWidth={0.3} anchorX="left" anchorY="top" position={[0.55, GOLDENRATIO, 0]} fontSize={0.025} fontWeight={700}>
-          {props.name}
-        </Text>
+      <Text maxWidth={0.3} anchorX="left" anchorY="top" position={[0.55, GOLDENRATIO, 0]} fontSize={0.025} fontWeight={700}>
+        {props.name}
+      </Text>
       <Text maxWidth={0.3} anchorX="left" anchorY="top" position={[0.55, GOLDENRATIO - 0.07, 0]} fontSize={0.025}>
         {props.description}
       </Text>
