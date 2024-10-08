@@ -8,30 +8,58 @@ import getUuid from 'uuid-by-string'
 
 const GOLDENRATIO = 1.61803398875
 
+const floatingTextStyle = {
+  position: 'absolute',
+  bottom: '20px',
+  left: '20px',
+  color: 'white',
+  padding: '10px',
+  borderRadius: '5px',
+  fontSize: '14px',
+  zIndex: 10,
+  fontFamily: 'sans-serif',
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+};
+
+const linkStyle = {
+  color: 'lightgray',
+  textDecoration: 'none',
+};
+
 export const App = ({ images }) => (
-  <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }}>
-    <color attach="background" args={['#191920']} />
-    <fog attach="fog" args={['#191920', 0, 15]} />
-    <group position={[0, -0.5, 0]}>
-      <Frames images={images} />
-      <mesh rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[50, 50]} />
-        <MeshReflectorMaterial
-          blur={[300, 100]}
-          resolution={2048}
-          mixBlur={1}
-          mixStrength={80}
-          roughness={1}
-          depthScale={1.2}
-          minDepthThreshold={0.4}
-          maxDepthThreshold={1.4}
-          color="#050505"
-          metalness={0.5}
-        />
-      </mesh>
-    </group>
-    <Environment preset="city" />
-  </Canvas>
+  <>
+    <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }}>
+      <color attach="background" args={['#191920']} />
+      <fog attach="fog" args={['#191920', 0, 15]} />
+      <group position={[0, -0.5, 0]}>
+        <Frames images={images} />
+        <mesh rotation={[-Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[50, 50]} />
+          <MeshReflectorMaterial
+            blur={[300, 100]}
+            resolution={2048}
+            mixBlur={1}
+            mixStrength={80}
+            roughness={1}
+            depthScale={1.2}
+            minDepthThreshold={0.4}
+            maxDepthThreshold={1.4}
+            color="#050505"
+            metalness={0.5}
+          />
+        </mesh>
+      </group>
+      <Environment preset="city" />
+    </Canvas>
+    <div style={floatingTextStyle}>
+      <svg width="12" height="12" viewBox="0 0 24 24" style={{ marginRight: '10px', verticalAlign: 'middle' }}>
+        <polygon points="22,12 2,2 2,22" fill="white" />
+      </svg>
+      <a href="https://www.youtube.com/watch?v=Q9wcvFkWpsM" target="_blank" rel="noopener noreferrer" style={linkStyle}>TEDxVancouver - Jer Thorp - The Weight of Data</a>
+    </div>
+  </>
 )
 
 function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) {
@@ -94,8 +122,11 @@ function Frame({ url, c = new THREE.Color(), ...props }) {
         </mesh>
         <Image raycast={() => null} ref={image} position={[0, 0, 0.7]} url={url} />
       </mesh>
-      <Text maxWidth={0.1} anchorX="left" anchorY="top" position={[0.55, GOLDENRATIO, 0]} fontSize={0.025}>
-        {name.split('-').join(' ')}
+      <Text  maxWidth={0.3} anchorX="left" anchorY="top" position={[0.55, GOLDENRATIO, 0]} fontSize={0.025} fontWeight={700}>
+          {props.name}
+        </Text>
+      <Text maxWidth={0.3} anchorX="left" anchorY="top" position={[0.55, GOLDENRATIO - 0.07, 0]} fontSize={0.025}>
+        {props.description}
       </Text>
     </group>
   )

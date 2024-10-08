@@ -28,7 +28,7 @@ const images = [
   },
   // Left
   {
-    position: [-1.75, 0, 0.25],
+    position: [-2, 0, 0.25],
     rotation: [0, Math.PI / 2.5, 0],
     url: 'https://static.wixstatic.com/media/3e90e7_5c3269d3809543d49d81576b6f359de2~mv2.png/v1/fill/w_1280,h_800,al_c,q_90,enc_auto/3e90e7_5c3269d3809543d49d81576b6f359de2~mv2.png',
     name: 'Infinite Weft',
@@ -57,7 +57,7 @@ const images = [
     description: 'The right angle view highlights the contrasts in color and form.'
   },
   {
-    position: [2.15, 0, 1.5],
+    position: [2.5, 0, 1.5],
     rotation: [0, -Math.PI / 2.5, 0],
     url: 'https://miro.medium.com/v2/resize:fit:1200/format:webp/0*mGiczxjl_hLSbLNC.jpg',
     name: 'Influence of early mac os',
@@ -71,5 +71,11 @@ const images = [
     description: 'An image of Jer Thorp, an influential designer and artist, known for his unique approach to data visualization.'
   }
 ];
+
+const audio = new Audio('./Jer-Thorp_The-Weight-of-Data.mp3'); // Replace with your MP3 URL
+audio.play().catch(error => {
+  console.error("Audio playback failed: ", error);
+  alert("Audio playback failed, make sure your browser allows autoplay. Enable and reload the page.");
+});
 
 createRoot(document.getElementById('root')).render(<App images={images} />);
