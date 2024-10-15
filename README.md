@@ -9,6 +9,7 @@ trigger
 
 ## References Inspiration
 - https://www.moma.org/artists/4154
+- https://www.pentagram.com/about/paula-scher
 
 ## Syllabus
 - Data Visualisation, 6CFU
