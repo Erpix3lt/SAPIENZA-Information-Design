@@ -38,6 +38,7 @@ trigger
 
 ## Notes
 ### 01.10.2024
+https://classroom.google.com/c/NzEyMDc1NDYxMDc0/m/NzE5OTEzNDczMTE4/details
 #### Key Understandings
 - Visualisations, Representation of Data
 - High social and educational impact
@@ -90,3 +91,17 @@ trigger
 - https://www.datavisualizationsociety.org/
 - https://nightingaledvs.com/
 - https://visualisingdata.com/
+
+### 15.10.2024
+
+#### Visual Language
+
+- Marks or Invariant, Alphabet
+
+Basic shapes are Dots, Lines, Surfaces, Shapes or Symbols
+Range from most abstract to meaningfull
+each one is more powerfull in terms of communication
+The more complex the more relies on cultural language
+https://multimedia.scmp.com/culture/article/SCMP-printed-graphics-memory/lonelyGraphics/201801A169.html
+
+- Channels or Variable, Syntax
