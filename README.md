@@ -7,6 +7,9 @@ trigger
 
 ## Course-Works
 
+## References Inspiration
+- https://www.moma.org/artists/4154
+
 ## Syllabus
 - Data Visualisation, 6CFU
 - Data Storytelling and Research, 3 CFU
