@@ -99,6 +99,7 @@ https://classroom.google.com/c/NzEyMDc1NDYxMDc0/m/NzE5OTEzNDczMTE4/details
 ### 15.10.2024
 
 #### Visual Language
+https://classroom.google.com/u/3/c/NzEyMDc1NDYxMDc0/m/NzIzNjcyMTExMjI4/details
 
 - Marks or Invariant, Alphabet
 
