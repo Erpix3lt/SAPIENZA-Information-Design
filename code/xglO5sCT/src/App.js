@@ -83,7 +83,7 @@ export const App = ({ images }) => (
       </a>
     </div>
     <div style={floatingTextStyleRight}>
-      <a href="https://www.jerthorp.com/" target="_blank" rel="noopener noreferrer" style={linkStyleSecondary}>
+      <a href="https://jerthorp.glitch.me/" target="_blank" rel="noopener noreferrer" style={linkStyleSecondary}>
         Jer Thorp
       </a>
     </div>
