@@ -7,6 +7,10 @@ trigger
 
 ## Course-Works
 
+## References Inspiration
+- https://www.moma.org/artists/4154
+- https://www.pentagram.com/about/paula-scher
+
 ## Syllabus
 - Data Visualisation, 6CFU
 - Data Storytelling and Research, 3 CFU
@@ -38,6 +42,7 @@ trigger
 
 ## Notes
 ### 01.10.2024
+https://classroom.google.com/c/NzEyMDc1NDYxMDc0/m/NzE5OTEzNDczMTE4/details
 #### Key Understandings
 - Visualisations, Representation of Data
 - High social and educational impact
@@ -90,3 +95,18 @@ trigger
 - https://www.datavisualizationsociety.org/
 - https://nightingaledvs.com/
 - https://visualisingdata.com/
+
+### 15.10.2024
+
+#### Visual Language
+https://classroom.google.com/u/3/c/NzEyMDc1NDYxMDc0/m/NzIzNjcyMTExMjI4/details
+
+- Marks or Invariant, Alphabet
+
+Basic shapes are Dots, Lines, Surfaces, Shapes or Symbols
+Range from most abstract to meaningfull
+each one is more powerfull in terms of communication
+The more complex the more relies on cultural language
+https://multimedia.scmp.com/culture/article/SCMP-printed-graphics-memory/lonelyGraphics/201801A169.html
+
+- Channels or Variable, Syntax
