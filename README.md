@@ -117,4 +117,4 @@ https://multimedia.scmp.com/culture/article/SCMP-printed-graphics-memory/lonelyG
 - RAWGraphs, https://www.rawgraphs.io/
 - Datawrapper, do's and dont's, https://blog.datawrapper.de/category/datavis-dos-and-donts/
 - D3.js Cartogrophy mapping, https://github.com/markmarkoh/datamaps
-- Three js interactive Data Visualisation, https://medium.com/cortico/3d-data-visualization-with-react-and-three-js-7272fb6de432
+- Three js interactive Data Visualisation, https://medium.com/cortico/3d-data-visualization-with-react-and-three-js-7272fb6de432, https://github.com/CorticoAI/3d-react-demo
