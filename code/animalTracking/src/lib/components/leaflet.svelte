@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import {
     onMount,
     onDestroy,
@@ -10,23 +12,33 @@
   import "leaflet/dist/leaflet.css";
   import { removeLeafletAttribution } from "$lib/helpers";
 
-  export let bounds: L.LatLngBoundsExpression | undefined = undefined;
-  export let view: L.LatLngExpression | undefined = undefined;
-  export let zoomFactor: number | undefined = undefined;
+  interface Props {
+    bounds?: L.LatLngBoundsExpression | undefined;
+    view?: L.LatLngExpression | undefined;
+    zoomFactor?: number | undefined;
+    children?: import('svelte').Snippet;
+  }
+
+  let {
+    bounds = undefined,
+    view = undefined,
+    zoomFactor = undefined,
+    children
+  }: Props = $props();
 	const mbUrl =
 	"https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
 
   const dispatch = createEventDispatcher();
 
-  let map: L.Map | undefined;
-  let mapElement: HTMLElement;
+  let map: L.Map | undefined = $state();
+  let mapElement: HTMLElement | undefined = $state();
 
   onMount(() => {
     if (!bounds && (!view || !zoomFactor)) {
       throw new Error("Must set either bounds, or view and zoom.");
     }
 
-    map = L.map(mapElement)
+    map = L.map(mapElement!)
       .on("zoom", (e) => dispatch("zoom", e))
       .on("popupopen", async (e) => {
         await tick();
@@ -48,15 +60,17 @@
     getMap: () => map,
   });
 
-  $: if (map) {
-    if (bounds) {
-      map.fitBounds(bounds);
-    } else if (view && zoomFactor) {
-      map.setView(view, zoomFactor);
+  run(() => {
+    if (map) {
+      if (bounds) {
+        map.fitBounds(bounds);
+      } else if (view && zoomFactor) {
+        map.setView(view, zoomFactor);
+      }
     }
-  }
+  });
 </script>
 
 <div class="w-full h-full" bind:this={mapElement}>
-  <slot></slot>
+  {@render children?.()}
 </div>
