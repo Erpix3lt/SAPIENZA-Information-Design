@@ -1,55 +1,62 @@
 <script lang="ts">
-	import { onMount, onDestroy, setContext, createEventDispatcher, tick } from 'svelte';
-	import L from 'leaflet';
-	import 'leaflet/dist/leaflet.css';
+  import {
+    onMount,
+    onDestroy,
+    setContext,
+    createEventDispatcher,
+    tick,
+  } from "svelte";
+  import L from "leaflet";
+  import "leaflet/dist/leaflet.css";
+  import { removeLeafletAttribution } from "$lib/helpers";
 
-	export let bounds: L.LatLngBoundsExpression | undefined = undefined;
-	export let view: L.LatLngExpression | undefined = undefined;
-	export let zoom: number | undefined = undefined;
+  export let bounds: L.LatLngBoundsExpression | undefined = undefined;
+  export let view: L.LatLngExpression | undefined = undefined;
+  export let zoomFactor: number | undefined = undefined;
+	const mbUrl =
+	"https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
 
-	const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher();
 
-	let map: L.Map | undefined;
-	let mapElement: HTMLElement;
+  let map: L.Map | undefined;
+  let mapElement: HTMLElement;
 
-	onMount(() => {
-		if (!bounds && (!view || !zoom)) {
-			throw new Error('Must set either bounds, or view and zoom.');
-		}
+  onMount(() => {
+    if (!bounds && (!view || !zoomFactor)) {
+      throw new Error("Must set either bounds, or view and zoom.");
+    }
 
-		map = L.map(mapElement)
-			// example to expose map events to parent components:
-      //@ts-ignore
-			.on('zoom', (e) => dispatch('zoom', e))
-      //@ts-ignore
-			.on('popupopen', async (e) => {
-				await tick();
-				e.popup.update();
-			});
+    map = L.map(mapElement)
+      .on("zoom", (e) => dispatch("zoom", e))
+      .on("popupopen", async (e) => {
+        await tick();
+        e.popup.update();
+      });
 
-		L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {}).addTo(map);
-	});
+    L.tileLayer(mbUrl, { id: "mapbox.streets" }).addTo(
+      map
+    );
+    removeLeafletAttribution(document);
+  });
 
-	onDestroy(() => {
-		map?.remove();
-		map = undefined;
-	});
+  onDestroy(() => {
+    map?.remove();
+    map = undefined;
+  });
 
-	setContext('map', {
-		getMap: () => map
-	});
+  setContext("map", {
+    getMap: () => map,
+  });
 
-	$: if (map) {
-		if (bounds) {
-			map.fitBounds(bounds);
-		} else if (view && zoom) {
-			map.setView(view, zoom);
-		}
-	}
+  $: if (map) {
+    if (bounds) {
+      map.fitBounds(bounds);
+    } else if (view && zoomFactor) {
+      map.setView(view, zoomFactor);
+    }
+  }
 </script>
 
 <div class="w-full h-full" bind:this={mapElement}>
-	{#if map}
-		<slot />
-	{/if}
+  <slot></slot>
 </div>
