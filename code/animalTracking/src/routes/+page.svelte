@@ -7,7 +7,5 @@
 </script>
 
 <div class="w-full h-screen">
-	<Leaflet view={initialView} zoomFactor={10}>
-		
-	</Leaflet>
+	<Leaflet view={initialView} zoomFactor={10} />
 </div>

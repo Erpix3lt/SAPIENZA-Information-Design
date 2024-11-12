@@ -1,12 +1,8 @@
 <script lang="ts">
-  import { run } from 'svelte/legacy';
-
   import {
     onMount,
     onDestroy,
     setContext,
-    createEventDispatcher,
-    tick,
   } from "svelte";
   import L from "leaflet";
   import "leaflet/dist/leaflet.css";
@@ -16,19 +12,19 @@
     bounds?: L.LatLngBoundsExpression | undefined;
     view?: L.LatLngExpression | undefined;
     zoomFactor?: number | undefined;
-    children?: import('svelte').Snippet;
+    children?: import("svelte").Snippet;
   }
 
   let {
     bounds = undefined,
     view = undefined,
     zoomFactor = undefined,
-    children
+    children,
   }: Props = $props();
-	const mbUrl =
-	"https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
 
-  const dispatch = createEventDispatcher();
+  const mbUrl =
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+
 
   let map: L.Map | undefined = $state();
   let mapElement: HTMLElement | undefined = $state();
@@ -39,15 +35,7 @@
     }
 
     map = L.map(mapElement!)
-      .on("zoom", (e) => dispatch("zoom", e))
-      .on("popupopen", async (e) => {
-        await tick();
-        e.popup.update();
-      });
-
-    L.tileLayer(mbUrl, { id: "mapbox.streets" }).addTo(
-      map
-    );
+    L.tileLayer(mbUrl, { id: "mapbox.streets" }).addTo(map);
     removeLeafletAttribution(document);
   });
 
@@ -60,15 +48,15 @@
     getMap: () => map,
   });
 
-  run(() => {
-    if (map) {
-      if (bounds) {
-        map.fitBounds(bounds);
-      } else if (view && zoomFactor) {
-        map.setView(view, zoomFactor);
-      }
-    }
-  });
+	$effect(() => {
+		if(map) {
+			if (bounds) {
+				map.fitBounds(bounds);
+			} else if (view && zoomFactor) {
+				map.setView(view, zoomFactor);
+			}
+		}
+	});
 </script>
 
 <div class="w-full h-full" bind:this={mapElement}>
