@@ -120,3 +120,6 @@ https://multimedia.scmp.com/culture/article/SCMP-printed-graphics-memory/lonelyG
 - Three js interactive Data Visualisation, https://medium.com/cortico/3d-data-visualization-with-react-and-three-js-7272fb6de432, https://github.com/CorticoAI/3d-react-demo
 - Felixes, lone wolf vis: https://github.com/xwillorg/animal-tracks, https://coyote-phoqi3yuu-xwillorg.vercel.app
 - Leaflet interactive maps, https://github.com/Leaflet/Leaflet, https://leafletjs.com/
+- https://data.worldbank.org/
+- statista
+- https://www.istat.it/
