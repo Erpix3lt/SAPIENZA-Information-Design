@@ -110,3 +110,10 @@ The more complex the more relies on cultural language
 https://multimedia.scmp.com/culture/article/SCMP-printed-graphics-memory/lonelyGraphics/201801A169.html
 
 - Channels or Variable, Syntax
+
+### 12.11.2024
+
+**Technologies**
+- RAWGraphs, https://www.rawgraphs.io/
+- Datawrapper, do's and dont's, https://blog.datawrapper.de/category/datavis-dos-and-donts/
+- D3.js Cartogrophy mapping, https://github.com/markmarkoh/datamaps
