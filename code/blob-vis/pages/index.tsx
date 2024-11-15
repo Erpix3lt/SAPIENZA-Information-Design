@@ -1,10 +1,9 @@
 import { Canvas } from "@react-three/fiber";
-import * as THREE from 'three';
-import { OrbitControls } from "@react-three/drei";
-import Blob from "../components/blob";
-import { useEffect, useState } from "react";
+import { CameraControls } from "@react-three/drei";
+import { useEffect, useRef, useState } from "react";
+import Timeline from "../components/timeline";
 
-interface Keyword {
+export interface Keyword {
   Name: string;
   'Start Year': number;
   'End Year': number;
@@ -13,21 +12,66 @@ interface Keyword {
 
 export default function Home() {
   const [keywords, setKeywords] = useState<Keyword[]>([]);
+  const controls = useRef<CameraControls | null>(null);
+  const [isPressing, setIsPressing] = useState(false);
+  const [direction, setDirection] = useState<"left" | "right" | null>(null);
 
   useEffect(() => {
     fetch('/api/keywords')
       .then(response => response.json())
       .then(data => setKeywords(data));
   }, []);
-  const blobPositions: THREE.Vector3[] = Array.from({ length: 36 }, (_, i) => new THREE.Vector3(0, 0, -i * 2));
+
+  useEffect(() => {
+    const handleMouseDown = (event: MouseEvent) => {
+      setIsPressing(true);
+      if (event.clientX < window.innerWidth / 2) {
+        setDirection("left");
+      } else {
+        setDirection("right");
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsPressing(false);
+      setDirection(null);
+    };
+
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    if (isPressing && direction) {
+      interval = setInterval(() => {
+        if (direction === "left") {
+          controls.current?.truck(-4, 0.0, true);
+        } else if (direction === "right") {
+          controls.current?.truck(4, 0.0, true);
+        }
+      }, 16);
+    } else if (interval) {
+      clearInterval(interval);
+    }
+
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [isPressing, direction]);
 
   return (
     <div className="container">
-      <Canvas camera={{ position: [0, 0, 8] as [number, number, number] }}>
-        {blobPositions.map((position, index) => (
-          <Blob key={index} position={position} />
-        ))}
-        <OrbitControls />
+      <Canvas camera={{ position: [0.0, 0.0, 100.0] as [number, number, number] }} >
+        <Timeline keywords={keywords} />
+        <CameraControls ref={controls} />
       </Canvas>
     </div>
   );

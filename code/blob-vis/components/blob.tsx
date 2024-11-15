@@ -6,9 +6,10 @@ import { MathUtils, type Vector3 } from "three";
 
 interface BlobProps {
   position: Vector3;
+  scale: Vector3;
 }
 
-const Blob: React.FC<BlobProps> = ({ position }) => {
+const Blob: React.FC<BlobProps> = ({ position, scale }) => {
   const mesh = useRef<THREE.Mesh>(null);
   const hover = useRef(false);
   const uniforms = useMemo(() => {
@@ -35,7 +36,7 @@ const Blob: React.FC<BlobProps> = ({ position }) => {
   return (
     <mesh
       ref={mesh}
-      scale={[1.5, 1, 1]} // Non-uniform scale to create an oval shape
+      scale={scale}
       position={position}
       onPointerOver={() => (hover.current = true)}
       onPointerOut={() => (hover.current = false)}
