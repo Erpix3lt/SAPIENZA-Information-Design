@@ -36,13 +36,23 @@ const Blob: React.FC<BlobProps> = ({ position, scale, onPointerOver, onPointerOu
     }
   });
 
+  const handlePointerOver = (event: ThreeEvent<PointerEvent>) => {
+    hover.current = true;
+    onPointerOver(event);
+  };
+
+  const handlePointerOut = (event: ThreeEvent<PointerEvent>) => {
+    hover.current = false;
+    onPointerOut(event);
+  };
+
   return (
     <mesh
       ref={mesh}
       scale={scale}
       position={position}
-      onPointerOver={onPointerOver}
-      onPointerOut={onPointerOut}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
       onPointerMove={onPointerMove}
     >
       <icosahedronBufferGeometry args={[2, 20]} />
