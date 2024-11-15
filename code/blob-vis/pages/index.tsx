@@ -1,12 +1,9 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, ThreeEvent } from "@react-three/fiber";
 import {
   AccumulativeShadows,
-  Backdrop,
   CameraControls,
-  Environment,
   RandomizedLight,
   Stars,
-  SpotLight,
 } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import Timeline from "../components/timeline";
@@ -23,6 +20,8 @@ export default function Home() {
   const controls = useRef<CameraControls | null>(null);
   const [isPressing, setIsPressing] = useState(false);
   const [direction, setDirection] = useState<"left" | "right" | null>(null);
+  const [hoveredKeyword, setHoveredKeyword] = useState<Keyword | null>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     fetch("/api/keywords")
@@ -75,11 +74,32 @@ export default function Home() {
     };
   }, [isPressing, direction]);
 
+  const handlePointerOver = (keyword: Keyword, event: React.PointerEvent) => {
+    setHoveredKeyword(keyword);
+    setMousePos({ x: event.clientX, y: event.clientY });
+  };
+
+  const handlePointerOut = () => {
+    setHoveredKeyword(null);
+  };
+
+  const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
+    if (hoveredKeyword) {
+      setMousePos({ x: event.clientX, y: event.clientY });
+    }
+  };
+
   return (
+    <>
       <Canvas
         camera={{ position: [0.0, 0.0, 100.0] as [number, number, number] }}
       >
-        <Timeline keywords={keywords} />
+        <Timeline
+          keywords={keywords}
+          onPointerOver={handlePointerOver}
+          onPointerOut={handlePointerOut}
+          onPointerMove={handlePointerMove}
+        />
         <CameraControls ref={controls} />
         <AccumulativeShadows temporal frames={100} scale={10}>
           <RandomizedLight amount={8} position={[5, 5, -10]} />
@@ -94,5 +114,32 @@ export default function Home() {
           speed={1}
         />
       </Canvas>
+      {hoveredKeyword && (
+        <div
+        style={{
+          position: "absolute",
+          bottom: mousePos.y,
+          left: mousePos.x,
+          zIndex: 10,
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          transform: "translateX(-50%)",
+          gap: 5,
+          backgroundColor: "rgba(255, 255, 255, 0.2)", 
+          backdropFilter: "blur(10px)",
+          borderRadius: "10px", 
+          padding: "10px", 
+          color: "white"
+        }}
+        >
+          <p style={{ margin: 0, fontWeight: 700 }}>{hoveredKeyword["Name"]}</p>
+          <p style={{ margin: 0 }}>
+            {hoveredKeyword["Start Year"]} - {hoveredKeyword["End Year"]}
+          </p>
+        </div>
+      )}
+    </>
   );
 }

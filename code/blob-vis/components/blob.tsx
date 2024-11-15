@@ -1,15 +1,18 @@
 import React, { useMemo, useRef } from "react";
 import vertexShader from "./vertexShader";
 import fragmentShader from "./fragmentShader";
-import { useFrame } from "@react-three/fiber";
+import { ThreeEvent, useFrame } from "@react-three/fiber";
 import { MathUtils, type Vector3 } from "three";
 
 interface BlobProps {
   position: Vector3;
   scale: Vector3;
+  onPointerOver: (event: ThreeEvent<PointerEvent>) => void;
+  onPointerOut: (event: ThreeEvent<PointerEvent>) => void;
+  onPointerMove: (event: ThreeEvent<PointerEvent>) => void;
 }
 
-const Blob: React.FC<BlobProps> = ({ position, scale }) => {
+const Blob: React.FC<BlobProps> = ({ position, scale, onPointerOver, onPointerOut, onPointerMove }) => {
   const mesh = useRef<THREE.Mesh>(null);
   const hover = useRef(false);
   const uniforms = useMemo(() => {
@@ -27,7 +30,7 @@ const Blob: React.FC<BlobProps> = ({ position, scale }) => {
 
       (mesh.current.material as THREE.ShaderMaterial).uniforms.u_intensity.value = MathUtils.lerp(
         (mesh.current.material as THREE.ShaderMaterial).uniforms.u_intensity.value,
-        hover.current ? 0.4 : 0.15,
+        hover.current ? 0.7 : 0.25,
         0.02
       );
     }
@@ -38,8 +41,9 @@ const Blob: React.FC<BlobProps> = ({ position, scale }) => {
       ref={mesh}
       scale={scale}
       position={position}
-      onPointerOver={() => (hover.current = true)}
-      onPointerOut={() => (hover.current = false)}
+      onPointerOver={onPointerOver}
+      onPointerOut={onPointerOut}
+      onPointerMove={onPointerMove}
     >
       <icosahedronBufferGeometry args={[2, 20]} />
       <shaderMaterial
