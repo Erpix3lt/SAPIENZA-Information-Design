@@ -12,11 +12,16 @@ interface TimelineProps {
 }
 
 const Timeline: React.FC<TimelineProps> = ({ keywords, onPointerOver, onPointerOut, onPointerMove }) => {
+  if (keywords.length === 0) {
+    return null; // or return some placeholder content
+  }
+
   // Sort keywords by Start Year in ascending order
   const sortedKeywords = [...keywords].sort((a, b) => a['Start Year'] - b['Start Year']);
 
   // Find the earliest Start Year
   const earliestStartYear = sortedKeywords[0]['Start Year'];
+
 
   return (
     <group>
