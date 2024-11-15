@@ -149,11 +149,12 @@ export default function Home() {
           backdropFilter: "blur(10px)",
           borderRadius: "10px", 
           padding: "10px", 
-          color: "white"
+          color: "white",
+          fontSize: 12
         }}
         >
-          <p style={{ margin: 0, fontWeight: 700 }}>{hoveredKeyword["Name"]}</p>
-          <p style={{ margin: 0 }}>
+          <p style={{ margin: 0 }}>{hoveredKeyword["Name"]}</p>
+          <p style={{ margin: 0, color: "lightgray" }}>
             {hoveredKeyword["Start Year"]} - {hoveredKeyword["End Year"]}
           </p>
         </div>
