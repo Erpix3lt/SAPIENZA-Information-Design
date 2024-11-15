@@ -92,7 +92,7 @@ export default function Home() {
   return (
     <>
       <Canvas
-        camera={{ position: [0.0, 0.0, 100.0] as [number, number, number] }}
+        camera={{ position: [0, -100, 100.0] as [number, number, number] }}
       >
         <Timeline
           keywords={keywords}
@@ -105,11 +105,11 @@ export default function Home() {
           <RandomizedLight amount={8} position={[5, 5, -10]} />
         </AccumulativeShadows>
         <Stars
-          radius={100}
+          radius={300}
           depth={100}
           count={50000}
-          factor={4}
-          saturation={2}
+          factor={8}
+          saturation={5}
           fade
           speed={1}
         />
