@@ -1,13 +1,21 @@
 import { Canvas } from "@react-three/fiber";
-import { CameraControls } from "@react-three/drei";
+import {
+  AccumulativeShadows,
+  Backdrop,
+  CameraControls,
+  Environment,
+  RandomizedLight,
+  Stars,
+  SpotLight,
+} from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import Timeline from "../components/timeline";
 
 export interface Keyword {
   Name: string;
-  'Start Year': number;
-  'End Year': number;
-  'Usage Rating': number;
+  "Start Year": number;
+  "End Year": number;
+  "Usage Rating": number;
 }
 
 export default function Home() {
@@ -17,9 +25,9 @@ export default function Home() {
   const [direction, setDirection] = useState<"left" | "right" | null>(null);
 
   useEffect(() => {
-    fetch('/api/keywords')
-      .then(response => response.json())
-      .then(data => setKeywords(data));
+    fetch("/api/keywords")
+      .then((response) => response.json())
+      .then((data) => setKeywords(data));
   }, []);
 
   useEffect(() => {
@@ -68,11 +76,23 @@ export default function Home() {
   }, [isPressing, direction]);
 
   return (
-    <div className="container">
-      <Canvas camera={{ position: [0.0, 0.0, 100.0] as [number, number, number] }} >
+      <Canvas
+        camera={{ position: [0.0, 0.0, 100.0] as [number, number, number] }}
+      >
         <Timeline keywords={keywords} />
         <CameraControls ref={controls} />
+        <AccumulativeShadows temporal frames={100} scale={10}>
+          <RandomizedLight amount={8} position={[5, 5, -10]} />
+        </AccumulativeShadows>
+        <Stars
+          radius={100}
+          depth={100}
+          count={50000}
+          factor={4}
+          saturation={2}
+          fade
+          speed={1}
+        />
       </Canvas>
-    </div>
   );
 }
