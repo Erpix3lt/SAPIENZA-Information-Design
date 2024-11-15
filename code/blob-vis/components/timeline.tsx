@@ -1,8 +1,8 @@
 import React from 'react';
 import Blob from './blob';
 import { Keyword } from '../pages/index';
-import { Vector3 } from 'three';
 import { ThreeEvent } from '@react-three/fiber';
+import { Vector3 } from "three";
 
 interface TimelineProps {
   keywords: Keyword[];
