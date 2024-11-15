@@ -4,7 +4,7 @@ import fragmentShader from "./fragmentShader";
 import { useFrame } from "@react-three/fiber";
 import { MathUtils } from "three";
 
-const Blob = () => {
+const Blob = ({ position }) => {
   const mesh = useRef();
   const hover = useRef(false);
   const uniforms = useMemo(() => {
@@ -22,16 +22,17 @@ const Blob = () => {
 
       mesh.current.material.uniforms.u_intensity.value = MathUtils.lerp(
         mesh.current.material.uniforms.u_intensity.value,
-        hover.current ? 1 : 0.15,
+        hover.current ? 0.4 : 0.15,
         0.02
       );
     }
   });
+
   return (
     <mesh
       ref={mesh}
-      scale={1.5}
-      position={[0, 0, 0]}
+      scale={[10, 1, 1]}
+      position={position}
       onPointerOver={() => (hover.current = true)}
       onPointerOut={() => (hover.current = false)}
     >
@@ -40,6 +41,7 @@ const Blob = () => {
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
         uniforms={uniforms}
+        attach="material"
       />
     </mesh>
   );
