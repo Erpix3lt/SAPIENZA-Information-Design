@@ -25,8 +25,8 @@ const Timeline: React.FC<TimelineProps> = ({ keywords, onPointerOver, onPointerO
         return (
           <Blob
             key={index}
-            position={new Vector3(positionX, 0, index * 3)}
-            scale={new Vector3((keyword['End Year'] - keyword['Start Year']) * 0.2, keyword['Usage Rating'], keyword['Usage Rating'])}
+            position={new Vector3(positionX, 0,0)}
+            scale={new Vector3((keyword['End Year'] - keyword['Start Year']) , keyword['Usage Rating'], keyword['Usage Rating'])}
             onPointerOver={(event: any) => onPointerOver(keyword, event)}
             onPointerOut={onPointerOut}
             onPointerMove={onPointerMove}
