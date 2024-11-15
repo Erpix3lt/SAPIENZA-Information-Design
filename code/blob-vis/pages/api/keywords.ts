@@ -1,7 +1,8 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs';
 import path from 'path';
 
-export default function handler(req, res) {
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const csvFilePath = path.join(process.cwd(), 'lib', 'keywords.csv');
   const csvData = fs.readFileSync(csvFilePath, 'utf8');
 
