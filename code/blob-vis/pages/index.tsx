@@ -7,6 +7,8 @@ import {
 } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import Timeline from "../components/timeline";
+import NavigationTip from "../components/navigationTip";
+import HoverInfo from "../components/hoverInfo";
 
 export interface Keyword {
   Name: string;
@@ -114,51 +116,10 @@ export default function Home() {
           speed={1}
         />
       </Canvas>
-      <div
-        style={{
-          position: "absolute",
-          bottom: 10,
-          left: '50%',
-          zIndex: 9,
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          transform: "translateX(-50%)",
-          gap: 5,
-          color: "white",
-          fontSize: 10
-        }}
-        >
-          <p>Navigate by clicking either on the left or right. Hover to see more information.</p>
-        </div>
       {hoveredKeyword && (
-        <div
-        style={{
-          position: "absolute",
-          bottom: mousePos.y,
-          left: mousePos.x,
-          zIndex: 10,
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          transform: "translateX(-50%)",
-          gap: 5,
-          backgroundColor: "rgba(255, 255, 255, 0.2)", 
-          backdropFilter: "blur(10px)",
-          borderRadius: "10px", 
-          padding: "10px", 
-          color: "white",
-          fontSize: 12
-        }}
-        >
-          <p style={{ margin: 0 }}>{hoveredKeyword["Name"]}</p>
-          <p style={{ margin: 0, color: "lightgray" }}>
-            {hoveredKeyword["Start Year"]} - {hoveredKeyword["End Year"]}
-          </p>
-        </div>
+        <HoverInfo mousePos={mousePos} keyword={hoveredKeyword}></HoverInfo>
       )}
+      <NavigationTip></NavigationTip>
     </>
   );
 }
