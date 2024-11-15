@@ -114,6 +114,24 @@ export default function Home() {
           speed={1}
         />
       </Canvas>
+      <div
+        style={{
+          position: "absolute",
+          bottom: 10,
+          left: '50%',
+          zIndex: 9,
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          transform: "translateX(-50%)",
+          gap: 5,
+          color: "white",
+          fontSize: 10
+        }}
+        >
+          <p>Navigate by clicking either on the left or right. Hover to see more information.</p>
+        </div>
       {hoveredKeyword && (
         <div
         style={{
