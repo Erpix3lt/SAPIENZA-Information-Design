@@ -130,4 +130,10 @@ https://multimedia.scmp.com/culture/article/SCMP-printed-graphics-memory/lonelyG
 - https://ieee-dataport.org/open-access/data-server-energy-consumption-dataset - Server Data Consumption
 - https://joint-research-centre.ec.europa.eu/predict/ict-sector-analysis-2023/data-and-metadata_en - EU ICT PREDICT 2023 | Data and metadata
 - https://www.kaggle.com/datasets/chasewillden/topstarredopensourceprojects - Top 980 Starred Open Source Projects on GitHub
-- 
+  
+#### Talk experts
+- Andrea Nuzzolese, Social Robotics, natural language, understanding of technology paths
+- Pier Meo, Entepreneuor in tech & banking field
+
+- Vulnerability comment, role of open source in real world scenarious, strategies to avoid/ limit [(bugs, ability to adress bugs, elimante them), (evoloution of software, maintanance is crucial), testing ]
+- Only an impression that open source is less secure, difference of adaptability and usage
