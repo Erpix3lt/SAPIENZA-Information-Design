@@ -123,3 +123,11 @@ https://multimedia.scmp.com/culture/article/SCMP-printed-graphics-memory/lonelyG
 - https://data.worldbank.org/
 - statista
 - https://www.istat.it/
+
+### 19.11.2024
+- https://arxiv.org/pdf/2308.12545 - NPM Follower
+- https://dependencies.science/ - NPM Dataset
+- https://ieee-dataport.org/open-access/data-server-energy-consumption-dataset - Server Data Consumption
+- https://joint-research-centre.ec.europa.eu/predict/ict-sector-analysis-2023/data-and-metadata_en - EU ICT PREDICT 2023 | Data and metadata
+- https://www.kaggle.com/datasets/chasewillden/topstarredopensourceprojects - Top 980 Starred Open Source Projects on GitHub
+- 
