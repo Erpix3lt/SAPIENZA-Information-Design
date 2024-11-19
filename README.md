@@ -137,3 +137,4 @@ https://multimedia.scmp.com/culture/article/SCMP-printed-graphics-memory/lonelyG
 
 - Vulnerability comment, role of open source in real world scenarious, strategies to avoid/ limit [(bugs, ability to adress bugs, elimante them), (evoloution of software, maintanance is crucial), testing ]
 - Only an impression that open source is less secure, difference of adaptability and usage
+- Open data, not only crucial for humans, but also for machine learning. Need to be understandable by machines, machine readable
