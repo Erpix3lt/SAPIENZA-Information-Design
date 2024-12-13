@@ -3,7 +3,7 @@
 	import { type LatLngExpression } from 'leaflet';
 	import Leaflet from '$lib/components/leaflet.svelte';
 
-	const initialView: LatLngExpression = [48.3789, -119.91067];
+	const initialView: LatLngExpression = [21.56, 24.2744];
 </script>
 
 <div class="w-full h-screen">
