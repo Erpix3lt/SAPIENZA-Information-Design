@@ -18,11 +18,17 @@
     children,
   }: Props = $props();
 
-  const mbUrl =
-    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
-
   let map: L.Map | undefined = $state();
   let mapElement: HTMLElement | undefined = $state();
+
+  //image overlay
+  const imageUrl ="/mask.png";
+  const errorOverlayUrl = ""
+  const altText = "alt"
+  const latLngBounds = L.latLngBounds([
+    [21.56, 24.2744],
+    [21.4, 24.1]
+  ]);
 
   onMount(() => {
     if (!bounds && (!view || !zoomFactor)) {
@@ -31,8 +37,14 @@
 
     map = L.map(mapElement!);
     L.tileLayer("http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
-      maxZoom: 20,
       subdomains: ["mt0", "mt1", "mt2", "mt3"],
+    }).addTo(map);
+
+    //add image overlay
+    L.imageOverlay(imageUrl, latLngBounds, {
+      errorOverlayUrl: errorOverlayUrl,
+      alt: altText,
+      interactive: true,
     }).addTo(map);
     removeLeafletAttribution(document);
   });
@@ -51,6 +63,7 @@
       if (bounds) {
         map.fitBounds(bounds);
       } else if (view && zoomFactor) {
+        console.log("NEW VIEW", view, zoomFactor);
         map.setView(view, zoomFactor);
       }
     }
