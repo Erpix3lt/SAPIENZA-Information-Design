@@ -28,10 +28,13 @@
     if (!bounds && (!view || !zoomFactor)) {
       throw new Error("Must set either bounds, or view and zoom.");
     }
+
     map = L.map(mapElement!);
     createGTileLayer().addTo(map);
     imageOverlay = createOverlay();
+    imageOverlay.bindPopup("Hello world");
     imageOverlay.addTo(map);
+
     removeLeafletAttribution(document);
   });
 
@@ -55,10 +58,12 @@
   });
 
   $effect(() => {
-    imageOverlay?.on('click', (value) => {console.log("value", value)})
-    imageOverlay?.on("mouseover", () => {console.log("over")})
-    imageOverlay?.on("mouseout", () => {console.log("out")})
-  })
+    if (imageOverlay) {
+      imageOverlay.on("click", () => {
+        imageOverlay?.openPopup();
+      });
+    }
+  });
 </script>
 
 <div class="w-full h-full" bind:this={mapElement}>

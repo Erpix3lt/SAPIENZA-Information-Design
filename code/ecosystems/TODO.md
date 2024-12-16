@@ -1,4 +1,5 @@
 - [x] Overlay interactive
+- [x] Open Popup
 - [ ] Are overlays rotateable?
 - [ ] Generically render overlays
 - [ ] To limited number of ecosystems pick object
