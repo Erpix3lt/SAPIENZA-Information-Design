@@ -1,10 +1,9 @@
 <script lang="ts">
   import { onMount, onDestroy, setContext } from "svelte";
   import L from "leaflet";
-  import "leaflet/dist/leaflet.css";
   import { removeLeafletAttribution } from "$lib/leaflet/helpers";
   import { createGTileLayer } from "$lib/leaflet/map";
-  import { createOverlay, createOverlayWithPopup } from "$lib/leaflet/overlay";
+  import { createOverlayWithPopup } from "$lib/leaflet/overlay";
 
   interface Props {
     bounds?: L.LatLngBoundsExpression | undefined;
