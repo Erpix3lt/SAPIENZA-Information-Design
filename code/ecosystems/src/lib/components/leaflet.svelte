@@ -55,14 +55,6 @@
       }
     }
   });
-
-  // $effect(() => {
-  //   if (imageOverlay) {
-  //     imageOverlay.on("click", () => {
-  //       imageOverlay?.openPopup();
-  //     });
-  //   }
-  // });
 </script>
 
 <div class="w-full h-full" bind:this={mapElement}>
@@ -72,9 +64,14 @@
 <style>
   :global(.leaflet-popup-content-wrapper) {
     background: none;
+    box-shadow: none;
   }
 
   :global(.leaflet-popup-close-button) {
+   display: none;
+  }
+
+  :global(.leaflet-popup-tip-container) {
    display: none;
   }
 </style>
