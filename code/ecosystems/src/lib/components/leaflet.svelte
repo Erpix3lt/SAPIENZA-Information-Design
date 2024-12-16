@@ -3,6 +3,8 @@
   import L from "leaflet";
   import "leaflet/dist/leaflet.css";
   import { removeLeafletAttribution } from "$lib/helpers";
+  import { createGTileLayer } from "$lib/leaflet/map";
+  import { createOverlay } from "$lib/leaflet/overlay";
 
   interface Props {
     bounds?: L.LatLngBoundsExpression | undefined;
@@ -22,31 +24,14 @@
   let mapElement: HTMLElement | undefined = $state();
   let imageOverlay: L.ImageOverlay | undefined = $state();
 
-  //image overlay
-  const imageUrl ="/mask.png";
-  const errorOverlayUrl = ""
-  const altText = "alt"
-  const latLngBounds = L.latLngBounds([
-    [21.56, 24.2744],
-    [21.4, 24.1]
-  ]);
-
   onMount(() => {
     if (!bounds && (!view || !zoomFactor)) {
       throw new Error("Must set either bounds, or view and zoom.");
     }
-
     map = L.map(mapElement!);
-    L.tileLayer("https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
-      subdomains: ["mt0", "mt1", "mt2", "mt3"],
-    }).addTo(map);
-
-    //add image overlay
-    imageOverlay = L.imageOverlay(imageUrl, latLngBounds, {
-      errorOverlayUrl: errorOverlayUrl,
-      alt: altText,
-      interactive: true,
-    }).addTo(map);
+    createGTileLayer().addTo(map);
+    imageOverlay = createOverlay();
+    imageOverlay.addTo(map);
     removeLeafletAttribution(document);
   });
 
@@ -73,7 +58,6 @@
     imageOverlay?.on('click', (value) => {console.log("value", value)})
     imageOverlay?.on("mouseover", () => {console.log("over")})
     imageOverlay?.on("mouseout", () => {console.log("out")})
-
   })
 </script>
 
