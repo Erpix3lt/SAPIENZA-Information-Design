@@ -1,0 +1,4 @@
+- [x] Overlay interactive
+- [ ] Are overlays rotateable?
+- [ ] Generically render overlays
+- [ ] To limited number of ecosystems pick object

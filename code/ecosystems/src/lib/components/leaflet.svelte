@@ -20,6 +20,7 @@
 
   let map: L.Map | undefined = $state();
   let mapElement: HTMLElement | undefined = $state();
+  let imageOverlay: L.ImageOverlay | undefined = $state();
 
   //image overlay
   const imageUrl ="/mask.png";
@@ -41,7 +42,7 @@
     }).addTo(map);
 
     //add image overlay
-    L.imageOverlay(imageUrl, latLngBounds, {
+    imageOverlay = L.imageOverlay(imageUrl, latLngBounds, {
       errorOverlayUrl: errorOverlayUrl,
       alt: altText,
       interactive: true,
@@ -63,11 +64,17 @@
       if (bounds) {
         map.fitBounds(bounds);
       } else if (view && zoomFactor) {
-        console.log("NEW VIEW", view, zoomFactor);
         map.setView(view, zoomFactor);
       }
     }
   });
+
+  $effect(() => {
+    imageOverlay?.on('click', (value) => {console.log("value", value)})
+    imageOverlay?.on("mouseover", () => {console.log("over")})
+    imageOverlay?.on("mouseout", () => {console.log("out")})
+
+  })
 </script>
 
 <div class="w-full h-full" bind:this={mapElement}>
