@@ -73,4 +73,8 @@
   :global(.leaflet-popup-tip-container) {
    display: none;
   }
+
+  :global(.leaflet-control-zoom) {
+   display: none;
+  }
 </style>
