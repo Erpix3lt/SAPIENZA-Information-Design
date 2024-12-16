@@ -2,7 +2,7 @@
   import { onMount, onDestroy, setContext } from "svelte";
   import L from "leaflet";
   import "leaflet/dist/leaflet.css";
-  import { removeLeafletAttribution } from "$lib/helpers";
+  import { removeLeafletAttribution } from "$lib/leaflet/helpers";
   import { createGTileLayer } from "$lib/leaflet/map";
   import { createOverlay } from "$lib/leaflet/overlay";
 
