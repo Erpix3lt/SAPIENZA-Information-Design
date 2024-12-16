@@ -4,7 +4,7 @@
   import "leaflet/dist/leaflet.css";
   import { removeLeafletAttribution } from "$lib/leaflet/helpers";
   import { createGTileLayer } from "$lib/leaflet/map";
-  import { createOverlay } from "$lib/leaflet/overlay";
+  import { createOverlay, createOverlayWithPopup } from "$lib/leaflet/overlay";
 
   interface Props {
     bounds?: L.LatLngBoundsExpression | undefined;
@@ -31,8 +31,7 @@
 
     map = L.map(mapElement!);
     createGTileLayer().addTo(map);
-    imageOverlay = createOverlay();
-    imageOverlay.bindPopup("Hello world");
+    imageOverlay = createOverlayWithPopup("GG");
     imageOverlay.addTo(map);
 
     removeLeafletAttribution(document);
@@ -57,15 +56,25 @@
     }
   });
 
-  $effect(() => {
-    if (imageOverlay) {
-      imageOverlay.on("click", () => {
-        imageOverlay?.openPopup();
-      });
-    }
-  });
+  // $effect(() => {
+  //   if (imageOverlay) {
+  //     imageOverlay.on("click", () => {
+  //       imageOverlay?.openPopup();
+  //     });
+  //   }
+  // });
 </script>
 
 <div class="w-full h-full" bind:this={mapElement}>
   {@render children?.()}
 </div>
+
+<style>
+  :global(.leaflet-popup-content-wrapper) {
+    background: none;
+  }
+
+  :global(.leaflet-popup-close-button) {
+   display: none;
+  }
+</style>

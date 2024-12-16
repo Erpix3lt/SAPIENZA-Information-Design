@@ -1,4 +1,8 @@
 import L from "leaflet";
+// @ts-ignore
+import Popup from '$lib/components/popup.svelte';
+import { mount } from 'svelte';
+
 
 const _imageUrl = "/mask.png";
 const _errorUrl = "";
@@ -19,4 +23,34 @@ export function createOverlay(
     alt: altText,
     interactive: true,
   });
+}
+
+// Function to create an overlay with a bound Svelte popup
+export function createOverlayWithPopup(
+  message: string,
+  imageUrl: string = _imageUrl,
+  latLngBounds: L.LatLngBounds = _latLngBounds,
+  errorUrl: string = _errorUrl,
+  altText: string = _altText
+) {
+  // Create the image overlay
+  const overlay = L.imageOverlay(imageUrl, latLngBounds, {
+    errorOverlayUrl: errorUrl,
+    alt: altText,
+    interactive: true,
+    className: "custom-popup",
+  });
+
+  const container = document.createElement("div");
+  mount(Popup, { target: container, props: { message } });
+
+  overlay.bindPopup(container, {
+    maxWidth: 300,
+  });
+
+  overlay.on("click", () => {
+    overlay.openPopup();
+  });
+
+  return overlay;
 }
