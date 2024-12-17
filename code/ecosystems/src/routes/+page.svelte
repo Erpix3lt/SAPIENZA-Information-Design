@@ -32,7 +32,7 @@
 </script>
 
 <div class="w-full h-screen">
-  <div class="absolute bottom-10 left-10 z-20 flex flex-row gap-4">
+  <div class="absolute bottom-10 left-10 z-20 flex flex-row gap-4 items-baseline">
     <Position ecosystem={currentEcosystem}></Position>
     <EcosystemsFilter onClick={handleEcosystemSelect} {ecosystems}></EcosystemsFilter>
   </div>
