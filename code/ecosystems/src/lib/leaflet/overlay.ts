@@ -28,8 +28,8 @@ export function createOverlay(
 // Function to create an overlay with a bound Svelte popup
 export function createOverlayWithPopup(
   message: string,
-  imageUrl: string = _imageUrl,
   latLngBounds: L.LatLngBounds = _latLngBounds,
+  imageUrl: string = _imageUrl,
   errorUrl: string = _errorUrl,
   altText: string = _altText
 ) {
@@ -42,14 +42,34 @@ export function createOverlayWithPopup(
   });
 
   const container = document.createElement("div");
-  mount(Popup, { target: container, props: {  } });
+  const details = {
+    headline: message,
+    subheadline: "subheadline",
+    content: "content"
+};
+  mount(Popup, { target: container, props: { details } });
 
   overlay.bindPopup(container, {
-    maxWidth: 600,
+    maxWidth: 1200,
   });
 
   overlay.on("click", () => {
     overlay.openPopup();
+  });
+
+  overlay.on("mouseover", () => {
+    const element = overlay.getElement();
+    if (element) {
+      element.style.boxSizing = "border-box";
+      element.style.border = "1px solid #7f1d1d";
+    }
+  });
+
+  overlay.on("mouseout", () => {
+    const element = overlay.getElement();
+    if (element) {
+      element.style.border = "none";
+    }
   });
 
   return overlay;

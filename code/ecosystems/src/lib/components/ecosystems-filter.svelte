@@ -26,7 +26,7 @@
       {#each ecosystems as ecosystem}
         <button
           onclick={() => onClick(ecosystem)}
-          class="font-baskervvol whitespace-nowrap text-red-700 hover:text-yellow-200 transition-colors duration-200"
+          class="font-baskervvol whitespace-nowrap text-red-950 hover:text-white transition-colors duration-200"
         >
           {ecosystem.name}
         </button>
@@ -35,7 +35,7 @@
   {/if}
   <button
     onclick={toggleFilter}
-    class="font-meyrin text-yellow-200 text-lg whitespace-nowrap bg-red-700 px-2 hover:bg-red-600"
+    class="rounded font-meyrin text-white text-lg whitespace-nowrap bg-red-950 px-2 hover:bg-red-900"
     >Choose ecosystem</button
   >
 </div>

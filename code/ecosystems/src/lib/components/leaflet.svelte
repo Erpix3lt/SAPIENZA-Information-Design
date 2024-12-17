@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy, setContext } from "svelte";
-  import L from "leaflet";
+  import L, { latLngBounds } from "leaflet";
   import { removeLeafletAttribution } from "$lib/leaflet/helpers";
   import { createGTileLayer } from "$lib/leaflet/map";
   import { createOverlayWithPopup } from "$lib/leaflet/overlay";
@@ -31,6 +31,21 @@
     map = L.map(mapElement!);
     createGTileLayer().addTo(map);
     imageOverlay = createOverlayWithPopup("GG");
+    imageOverlay.addTo(map);
+    imageOverlay = createOverlayWithPopup("GG", L.latLngBounds([
+  [21.66, 24.3744],
+  [21.5, 24.2],
+]));
+    imageOverlay.addTo(map);
+    imageOverlay = createOverlayWithPopup("GG", L.latLngBounds([
+  [21.76, 24.9744],
+  [21.2, 24.3],
+]));
+    imageOverlay.addTo(map);
+    imageOverlay = createOverlayWithPopup("GG", L.latLngBounds([
+  [21.36, 24.5744],
+  [21.1, 24.0],
+]));
     imageOverlay.addTo(map);
 
     removeLeafletAttribution(document);
