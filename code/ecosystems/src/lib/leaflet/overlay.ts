@@ -42,10 +42,10 @@ export function createOverlayWithPopup(
   });
 
   const container = document.createElement("div");
-  mount(Popup, { target: container, props: { message } });
+  mount(Popup, { target: container, props: {  } });
 
   overlay.bindPopup(container, {
-    maxWidth: 300,
+    maxWidth: 600,
   });
 
   overlay.on("click", () => {

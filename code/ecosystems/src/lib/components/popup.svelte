@@ -1,14 +1,14 @@
-<script>
-  export let message = "Hello from Svelte!";
+<script lang="ts">
+  export let details = {
+    headline: "Headline",
+    subheadline: "Subheadline",
+    content: "Content",
+  };
+
 </script>
 
-<div class=" p-4 bg-orange-700">
-  <h2>Svelte Popup</h2>
-  <p>{message}</p>
+<div class="p-2 bg-slate-50">
+  <h1 class="text-2xl font-bold text-gray-800 mb-2">{details.headline}</h1>
+  <h2 class="text-base text-gray-600 mb-4">{details.subheadline}</h2>
+  <p class="text-sm text-gray-800 mb-4">{details.content}</p>
 </div>
-
-<style>
-  h2 {
-    color: #2c3e50;
-  }
-</style>
