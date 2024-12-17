@@ -24,9 +24,19 @@
     }
   });
 
-  function handleEcosystemSelect(ecosystem: Ecosystem) {
+  async function handleEcosystemSelect(ecosystem: Ecosystem) {
     initialView = ecosystem.latLng || [21.56, 24.2744];
     currentEcosystem = ecosystem;
+    const response = await fetch('/api/osv/commit', {
+			method: 'POST',
+      body: JSON.stringify({ commit: "6879efc2c1596d11a6a6ad296f80063b558d5e0f" }),
+			headers: {
+				'content-type': 'application/json'
+			}
+		});
+
+    const data = await response.json();
+    console.log("Data", data);
   }
 
 </script>
