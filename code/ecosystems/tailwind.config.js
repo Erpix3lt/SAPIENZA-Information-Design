@@ -55,7 +55,10 @@ const config = {
 				sm: "calc(var(--radius) - 4px)"
 			},
 			fontFamily: {
-				sans: [...fontFamily.sans]
+				sans: [...fontFamily.sans],
+				baskervvol: ['baskervvol', 'serif'], 
+				wondertype: ['wondertype', 'sans-serif'],
+				meyrin: ['meyrin', 'sans-serif'],
 			}
 		}
 	},

@@ -77,4 +77,8 @@
   :global(.leaflet-control-zoom) {
    display: none;
   }
+
+  :global(.leaflet-pane) {
+    z-index: 10;
+  }
 </style>
