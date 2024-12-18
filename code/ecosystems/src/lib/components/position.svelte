@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Ecosystem } from "./ecosystems-filter.svelte";
+  import type { Ecosystem } from "./navigation.svelte";
 
   interface Props {
     ecosystem: Ecosystem;

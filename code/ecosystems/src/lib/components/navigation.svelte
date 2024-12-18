@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { clickOutside } from "svelte-outside"
+  import { writable } from "svelte/store";
+
   export type Ecosystem = {
     name: string;
     count: number;
@@ -11,18 +14,18 @@
   }
 
   let { ecosystems = [], onClick }: Props = $props();
-
-  import { writable } from "svelte/store";
-
   let isFilter = writable(false);
+
   function toggleFilter() {
     isFilter.update((value) => !value);
   }
 </script>
 
-<div>
+<div use:clickOutside={(e) => {isFilter.set(false) }}>
   {#if $isFilter}
-    <div class="scroll-container flex gap-8 overflow-x-scroll text-9xl max-w-7xl">
+    <div 
+      class="scroll-container flex gap-8 overflow-x-scroll text-9xl max-w-7xl"
+    >
       {#each ecosystems as ecosystem}
         <button
           onclick={() => onClick(ecosystem)}
@@ -33,6 +36,7 @@
       {/each}
     </div>
   {/if}
+
   <button
     onclick={toggleFilter}
     class="rounded font-meyrin text-white text-lg whitespace-nowrap bg-red-950 px-2 hover:bg-red-900"
