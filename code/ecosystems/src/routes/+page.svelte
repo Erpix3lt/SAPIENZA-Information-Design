@@ -4,13 +4,19 @@
   import Leaflet from "$lib/components/leaflet.svelte";
   import EcosystemsFilter, {
     type Ecosystem,
-  } from "$lib/components/ecosystems-filter.svelte";
+  } from "$lib/components/navigation.svelte";
   import { onMount } from "svelte";
   import Position from "$lib/components/position.svelte";
+  import GoBackInTime from "$lib/components/go-back-in-time.svelte";
 
   let ecosystems: Ecosystem[] = [];
-  let initialView: LatLngExpression = [21.56, 24.2744];
+  let view: LatLngExpression = [21.56, 24.2744];
   let currentEcosystem: Ecosystem = { name: "AlmaLinux", count: 0 };
+
+  async function getOsvData(page: number, ecosystem: string) {
+    const response = await fetch(`/api/osv/${page}/${ecosystem}`);
+    return await response.json();
+  }
 
   onMount(async () => {
     try {
@@ -22,26 +28,17 @@
     } catch (error) {
       console.error("Error fetching ecosystems:", error);
     }
-
-    const response = await fetch('/api/osv');
-		const result = await response.json();
-    console.log("Roll", result);
-
   });
 
   async function handleEcosystemSelect(ecosystem: Ecosystem) {
-    initialView = ecosystem.latLng || [21.56, 24.2744];
     currentEcosystem = ecosystem;
-    const response = await fetch('/api/osv/commit', {
-			method: 'POST',
-      body: JSON.stringify({ commit: "6879efc2c1596d11a6a6ad296f80063b558d5e0f" }),
-			headers: {
-				'content-type': 'application/json'
-			}
-		});
+    view = ecosystem.latLng || [21.56, 24.2744];
+    console.log("Data", await getOsvData(1, ecosystem.name));
+  }
 
-    const data = await response.json();
-    console.log("Data", data);
+  async function handleGoBackInTime(ecosystem: Ecosystem) {
+    console.log("Going back in time");
+    console.log("Data", await getOsvData(1, ecosystem.name));
   }
 
 </script>
@@ -49,7 +46,9 @@
 <div class="w-full h-screen">
   <div class="absolute bottom-10 left-10 z-20 flex flex-row gap-4 items-baseline">
     <Position ecosystem={currentEcosystem}></Position>
+    <GoBackInTime onClick={() => handleGoBackInTime(currentEcosystem)}></GoBackInTime>
     <EcosystemsFilter onClick={handleEcosystemSelect} {ecosystems}></EcosystemsFilter>
+
   </div>
-  <Leaflet view={initialView} zoomFactor={10}></Leaflet>
+  <Leaflet view={view} zoomFactor={10}></Leaflet>
 </div>
