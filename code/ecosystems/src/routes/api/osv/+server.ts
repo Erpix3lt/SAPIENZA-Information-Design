@@ -10,8 +10,7 @@ type Vulnerability = {
 };
 
 export async function GET(): Promise<Response> {
-  const url = 'https://osv.dev/list?q=&ecosystem=Pub';
-
+  const url = 'https://osv.dev/list?q=&ecosystem=Hex';
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -22,7 +21,7 @@ export async function GET(): Promise<Response> {
   }
 
   const html = await response.text();
-
+  console.log(html);
   // Parse the HTML using JSDOM
   const dom = new JSDOM(html);
   const document = dom.window.document;
