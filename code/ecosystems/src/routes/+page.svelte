@@ -1,54 +1,52 @@
-<script lang="ts">
-  import "leaflet/dist/leaflet.css";
-  import { type LatLngExpression } from "leaflet";
-  import Leaflet from "$lib/components/leaflet.svelte";
-  import EcosystemsFilter, {
-    type Ecosystem,
-  } from "$lib/components/navigation.svelte";
-  import { onMount } from "svelte";
-  import Position from "$lib/components/position.svelte";
-  import GoBackInTime from "$lib/components/go-back-in-time.svelte";
-
-  let ecosystems: Ecosystem[] = [];
-  let view: LatLngExpression = [21.56, 24.2744];
-  let currentEcosystem: Ecosystem = { name: "AlmaLinux", count: 0 };
-
-  async function getOsvData(page: number, ecosystem: string) {
-    const response = await fetch(`/api/osv/${page}/${ecosystem}`);
-    return await response.json();
-  }
-
-  onMount(async () => {
-    try {
-      const response = await fetch("/ecosystems.json");
-      if (!response.ok) {
-        throw new Error("Failed to load ecosystems data");
-      }
-      ecosystems = await response.json();
-    } catch (error) {
-      console.error("Error fetching ecosystems:", error);
-    }
-  });
-
-  async function handleEcosystemSelect(ecosystem: Ecosystem) {
-    currentEcosystem = ecosystem;
-    view = ecosystem.latLng || [21.56, 24.2744];
-    console.log("Data", await getOsvData(1, ecosystem.name));
-  }
-
-  async function handleGoBackInTime(ecosystem: Ecosystem) {
-    console.log("Going back in time");
-    console.log("Data", await getOsvData(1, ecosystem.name));
-  }
-
+<script>
+  import { clickOutside } from "svelte-outside";
+  import { writable } from "svelte/store";
+  let step = writable(1);
 </script>
 
-<div class="w-full h-screen">
-  <div class="absolute bottom-10 left-10 z-20 flex flex-row gap-4 items-baseline">
-    <Position ecosystem={currentEcosystem}></Position>
-    <GoBackInTime onClick={() => handleGoBackInTime(currentEcosystem)}></GoBackInTime>
-    <EcosystemsFilter onClick={handleEcosystemSelect} {ecosystems}></EcosystemsFilter>
-
-  </div>
-  <Leaflet view={view} zoomFactor={10}></Leaflet>
+<div class="w-full h-screen flex flex-col items-center justify-center bg-black">
+  {#if $step == 1}
+    <div
+      class="font-meyrin text-base text-center"
+      use:clickOutside={(e) => {
+        console.log("display artefacts");
+      }}
+    >
+      <p class="text-red-400">
+        This is some introductory text, this is how it works
+      </p>
+      <div class="flex gap-4 justify-end">
+        <a href="/explore" class="underline text-red-300"
+          >I already know how it works!</a
+        >
+        <button
+          onclick={() => {
+            step.update((n) => n + 1);
+          }}
+          class="underline text-red-400">next slide</button
+        >
+      </div>
+    </div>
+  {/if}
+  {#if $step == 2}
+    <div class="font-meyrin text-base text-center">
+      <p class="text-red-400">Okay this is the second explanation, lalala</p>
+      <div class="flex gap-4 justify-end">
+        <button
+          onclick={() => {
+            step.update((n) => n + 1);
+          }}
+          class="underline text-red-400">next slide</button
+        >
+      </div>
+    </div>
+  {/if}
+  {#if $step == 3}
+    <div class="font-meyrin text-base text-center">
+      <p class="text-red-400">Okay this is the third explanation, lalala</p>
+      <div class="flex gap-4 justify-end">
+        <a href="/explore" class="underline text-red-400 text-end">explore !</a>
+      </div>
+    </div>
+  {/if}
 </div>
