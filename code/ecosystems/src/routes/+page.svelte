@@ -22,6 +22,17 @@
     } catch (error) {
       console.error("Error fetching ecosystems:", error);
     }
+
+    try {
+      const osvResponse = await fetch("/api/osv");
+      if (!osvResponse.ok) {
+        throw new Error("Failed to fetch OSV vulnerabilities data");
+      }
+      const osvData = await osvResponse.json();
+      console.log("OSV Vulnerabilities:", osvData);
+    } catch (error) {
+      console.error("Error fetching vulnerabilities:", error);
+    }
   });
 
   async function handleEcosystemSelect(ecosystem: Ecosystem) {
