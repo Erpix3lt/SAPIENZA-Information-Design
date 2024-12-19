@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { clickOutside } from "svelte-outside"
+  import { clickOutside } from "svelte-outside";
   import { writable } from "svelte/store";
 
   export type Ecosystem = {
@@ -21,27 +21,30 @@
   }
 </script>
 
-<div use:clickOutside={(e) => {isFilter.set(false) }}>
+<div
+  use:clickOutside={(e) => {
+    isFilter.set(false);
+  }}
+>
+  <button
+    onclick={toggleFilter}
+    class="font-arialBlack text-xl hover:underline text-pink-500 uppercase"
+    >Choose ecosystem</button
+  >
   {#if $isFilter}
-    <div 
-      class="scroll-container flex gap-8 overflow-x-scroll text-9xl max-w-7xl"
+    <div
+      class="scroll-container flex flex-col overflow-y-scroll max-h-96"
     >
       {#each ecosystems as ecosystem}
         <button
           onclick={() => onClick(ecosystem)}
-          class="font-baskervvol whitespace-nowrap text-red-950 hover:text-white transition-colors duration-200"
+          class="font-arialBlack text-lg hover:underline text-pink-400 text-end"
         >
           {ecosystem.name}
         </button>
       {/each}
     </div>
   {/if}
-
-  <button
-    onclick={toggleFilter}
-    class="rounded font-meyrin text-white text-lg whitespace-nowrap bg-red-950 px-2 hover:bg-red-900"
-    >Choose ecosystem</button
-  >
 </div>
 
 <style>
