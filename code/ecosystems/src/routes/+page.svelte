@@ -10,13 +10,8 @@
 </script>
 
 {#if isMobile}
-  <div class="font-arialBlack text-3xl uppercase text-pink-500 h-screen flex flex-col items-center justify-center bg-black">
+  <div class="font-arialBlack underline text-3xl uppercase text-pink-500 h-screen flex flex-col items-center justify-center bg-black">
    <p>VIEW ON DESKTOP</p>
-   <p>IEW ON DESKTOP</p>
-   <p>EW ON DESKTOP</p>
-   <p>W ON DESKTOP</p>
-   <p> ON DESKTOP</p>
-   <p>N DESKTOP</p>
   </div>
 {:else}
   <Header></Header>
