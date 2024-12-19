@@ -8,6 +8,7 @@
   import { onMount } from "svelte";
   import Position from "$lib/components/position.svelte";
   import GoBackInTime from "$lib/components/go-back-in-time.svelte";
+  import ItemInformation from "$lib/components/item-information.svelte";
 
   let ecosystems: Ecosystem[] = [];
   let view: LatLngExpression = [21.56, 24.2744];
@@ -43,12 +44,18 @@
 
 </script>
 
-<div class="w-full h-screen">
-  <div class="absolute bottom-10 left-10 z-20 flex flex-row gap-4 items-baseline">
-    <Position ecosystem={currentEcosystem}></Position>
-    <GoBackInTime onClick={() => handleGoBackInTime(currentEcosystem)}></GoBackInTime>
-    <EcosystemsFilter onClick={handleEcosystemSelect} {ecosystems}></EcosystemsFilter>
-
+<div class="grid grid-cols-5 h-screen">
+  <div class="bg-black pt-2 flex flex-col justify-between h-screen">
+    <div class="flex flex-col items-end mr-2">
+      <p class="font-arialBlack text-xl uppercase text-gray-500 text-end">Explore</p>
+      <GoBackInTime onClick={() => handleGoBackInTime(currentEcosystem)}></GoBackInTime>
+      <EcosystemsFilter onClick={handleEcosystemSelect} {ecosystems}></EcosystemsFilter>
+    </div>
+    <div class="items-start mb-2 ml-2">
+      <ItemInformation></ItemInformation>
+    </div>
   </div>
-  <Leaflet view={view} zoomFactor={10}></Leaflet>
+  <div class="col-span-4">
+    <Leaflet view={view} zoomFactor={10}></Leaflet>
+  </div>
 </div>
