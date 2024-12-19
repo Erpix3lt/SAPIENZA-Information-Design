@@ -15,6 +15,19 @@ const config = {
 		},
 		extend: {
 			colors: {
+				'cabbage-pont': {
+        '50': '#f6f8f5',
+        '100': '#e8f1e7',
+        '200': '#d3e2d0',
+        '300': '#b0caab',
+        '400': '#84aa7e',
+        '500': '#628c5b',
+        '600': '#4e7148',
+        '700': '#405a3b',
+        '800': '#364b33',
+        '900': '#2c3d2a',
+        '950': '#152013',
+    	},
 				border: "hsl(var(--border) / <alpha-value>)",
 				input: "hsl(var(--input) / <alpha-value>)",
 				ring: "hsl(var(--ring) / <alpha-value>)",
@@ -56,9 +69,7 @@ const config = {
 			},
 			fontFamily: {
 				sans: [...fontFamily.sans],
-				baskervvol: ['baskervvol', 'serif'], 
-				wondertype: ['wondertype', 'sans-serif'],
-				meyrin: ['meyrin', 'sans-serif'],
+				arialBlack: ['"Arial Black"', 'sans-serif'],
 			}
 		}
 	},

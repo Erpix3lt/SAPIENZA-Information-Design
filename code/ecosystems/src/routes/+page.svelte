@@ -1,52 +1,30 @@
 <script>
-  import { clickOutside } from "svelte-outside";
-  import { writable } from "svelte/store";
-  let step = writable(1);
+  import Header from "$lib/components/header.svelte";
+  import IntroClickable from "$lib/components/intro-clickable.svelte";
 </script>
 
-<div class="w-full h-screen flex flex-col items-center justify-center bg-black">
-  {#if $step == 1}
-    <div
-      class="font-meyrin text-base text-center"
-      use:clickOutside={(e) => {
-        console.log("display artefacts");
-      }}
+<Header></Header>
+<div class="">
+  <div class="grid grid-cols-5 place-items-end mt-20">
+    <div class="col-start-2">
+      <IntroClickable></IntroClickable>
+    </div>
+    <a
+      href="/explore"
+      class="font-arialBlack text-xl hover:underline text-pink-500 col-start-3 self-center"
+      >JUST TAKE ME THERE!</a
     >
-      <p class="text-red-400">
-        This is some introductory text, this is how it works
-      </p>
-      <div class="flex gap-4 justify-end">
-        <a href="/explore" class="underline text-red-300"
-          >I already know how it works!</a
-        >
-        <button
-          onclick={() => {
-            step.update((n) => n + 1);
-          }}
-          class="underline text-red-400">next slide</button
-        >
-      </div>
+  </div>
+  <div class="grid grid-cols-5 place-items-end">
+    <div class="col-span-3 col-start-2">
+      <img src="/mask.png" alt="vulnerability" />
     </div>
-  {/if}
-  {#if $step == 2}
-    <div class="font-meyrin text-base text-center">
-      <p class="text-red-400">Okay this is the second explanation, lalala</p>
-      <div class="flex gap-4 justify-end">
-        <button
-          onclick={() => {
-            step.update((n) => n + 1);
-          }}
-          class="underline text-red-400">next slide</button
-        >
-      </div>
-    </div>
-  {/if}
-  {#if $step == 3}
-    <div class="font-meyrin text-base text-center">
-      <p class="text-red-400">Okay this is the third explanation, lalala</p>
-      <div class="flex gap-4 justify-end">
-        <a href="/explore" class="underline text-red-400 text-end">explore !</a>
-      </div>
-    </div>
-  {/if}
+  </div>
+  <div class="grid grid-cols-5 place-items-end text-cabbage-pont-400 text-xs mr-2 mb-2">
+    <p>IDK yet.</p>
+    <p>A project by Adrian, Max.</p>
+    <p>2024</p>
+    <p>Information Design</p>
+    <p>Universita Sapienza</p>
+  </div>
 </div>
