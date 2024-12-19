@@ -6,9 +6,7 @@
     type Ecosystem,
   } from "$lib/components/navigation.svelte";
   import { onMount } from "svelte";
-  import Position from "$lib/components/position.svelte";
   import GoBackInTime from "$lib/components/go-back-in-time.svelte";
-  import ItemInformation from "$lib/components/item-information.svelte";
 
   let ecosystems: Ecosystem[] = [];
   let view: LatLngExpression = [21.56, 24.2744];

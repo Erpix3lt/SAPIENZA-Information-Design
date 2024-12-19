@@ -33,7 +33,7 @@
   >
   {#if $isFilter}
     <div
-      class="scroll-container flex flex-col overflow-y-scroll max-h-screen"
+      class="scroll-container flex flex-col overflow-y-scroll max-h-96"
     >
       {#each ecosystems as ecosystem}
         <button
