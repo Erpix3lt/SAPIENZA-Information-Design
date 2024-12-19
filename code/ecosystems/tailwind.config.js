@@ -15,6 +15,32 @@ const config = {
 		},
 		extend: {
 			colors: {
+				'cabbage-pont': {
+        '50': '#f6f8f5',
+        '100': '#e8f1e7',
+        '200': '#d3e2d0',
+        '300': '#b0caab',
+        '400': '#84aa7e',
+        '500': '#628c5b',
+        '600': '#4e7148',
+        '700': '#405a3b',
+        '800': '#364b33',
+        '900': '#2c3d2a',
+        '950': '#152013',
+    	},
+			'korma': {
+        '50': '#fefbe8',
+        '100': '#fdf6c4',
+        '200': '#fceb8c',
+        '300': '#fad94a',
+        '400': '#f6c319',
+        '500': '#e6ab0c',
+        '600': '#c68308',
+        '700': '#9e5d0a',
+        '800': '#894d11',
+        '900': '#6f3c14',
+        '950': '#411e07',
+    },
 				border: "hsl(var(--border) / <alpha-value>)",
 				input: "hsl(var(--input) / <alpha-value>)",
 				ring: "hsl(var(--ring) / <alpha-value>)",
@@ -56,9 +82,7 @@ const config = {
 			},
 			fontFamily: {
 				sans: [...fontFamily.sans],
-				baskervvol: ['baskervvol', 'serif'], 
-				wondertype: ['wondertype', 'sans-serif'],
-				meyrin: ['meyrin', 'sans-serif'],
+				arialBlack: ['"Arial Black"', 'sans-serif'],
 			}
 		}
 	},
