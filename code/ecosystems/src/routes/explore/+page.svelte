@@ -51,9 +51,6 @@
       <GoBackInTime onClick={() => handleGoBackInTime(currentEcosystem)}></GoBackInTime>
       <EcosystemsFilter onClick={handleEcosystemSelect} {ecosystems}></EcosystemsFilter>
     </div>
-    <div class="items-start mb-2 ml-2">
-      <ItemInformation></ItemInformation>
-    </div>
   </div>
   <div class="col-span-4">
     <Leaflet view={view} zoomFactor={10}></Leaflet>

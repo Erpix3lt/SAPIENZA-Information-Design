@@ -61,7 +61,7 @@ export function createOverlayWithPopup(
     const element = overlay.getElement();
     if (element) {
       element.style.boxSizing = "border-box";
-      element.style.border = "1px solid #7f1d1d";
+      element.style.border = "double #f472b5";
     }
   });
 

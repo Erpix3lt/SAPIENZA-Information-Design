@@ -81,6 +81,10 @@
     box-shadow: none;
   }
 
+  :global(.leaflet-popup-content p) {
+    margin: 0;
+  }
+
   :global(.leaflet-popup-close-button) {
    display: none;
   }
