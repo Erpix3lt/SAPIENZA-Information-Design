@@ -1,6 +1,14 @@
+'use client'
+
+import { ThreeScene } from "@/components/three-scene";
+
 export default function Home() {
   return (
-    <div className="h-screen w-full">
+    <div className="h-screen w-full flex flex-col justify-between">
+      <div className="blur-xl">
+      <ThreeScene></ThreeScene>
+
+      </div>
       <footer className="text-white text-xs my-2 mx-1">
         <div className="grid grid-cols-5 gap-4">
           <div className="flex flex-col justify-end">
