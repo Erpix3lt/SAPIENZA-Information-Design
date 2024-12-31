@@ -1,7 +1,7 @@
 "use client";
 
 import { ThreeScene } from "@/components/three-scene";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export type Ecosystem = {
   ecosystem: string;
@@ -23,6 +23,15 @@ export default function Home() {
   const [displayArrows, setDisplayArrows] = useState(true);
   const [ecosystem, setEcosystem] = useState<Ecosystem>(ecosystems[0]);
   const [isViewer, setIsViewer] = useState(false);
+
+  useEffect(() => {
+    async function fetchPosts() {
+      const res = await fetch('/api/osv/Pub')
+      const data = await res.json()
+      console.log(data)
+    }
+    fetchPosts()
+  }, [])
 
   const handleObjectClick = () => {
     setIsBlurred(false);

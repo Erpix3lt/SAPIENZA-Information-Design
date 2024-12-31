@@ -57,10 +57,7 @@ export const ThreeScene: React.FC<ThreeSceneProps> = ({
   onClick,
   onHover,
   onLeave,
-}) => {
-  console.log(ecosystem);
-
-  
+}) => {  
   return (
     <div style={{ height: "80vh", width: "100vw" }}>
       <Canvas>
