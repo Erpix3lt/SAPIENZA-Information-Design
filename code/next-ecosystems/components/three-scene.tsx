@@ -3,6 +3,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from 'three';
 import { OrbitControls } from "@react-three/drei";
 import { Ecosystem } from "@/app/page";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { useLoader } from "@react-three/fiber";
 
 interface ThreeSceneProps {
   ecosystem: Ecosystem;
@@ -11,15 +13,16 @@ interface ThreeSceneProps {
   onNoHover: () => void;
 }
 
-interface RotatingMeshProps {
-  color: string;
+interface GLTFModelProps {
+  url: string;
   onClick: () => void;
   onHover: () => void;
   onNoHover: () => void;
 }
 
-const RotatingMesh: React.FC<RotatingMeshProps> = ({color, onClick, onHover, onNoHover }) => {
-  const meshRef = useRef<THREE.Mesh>(null);
+const GLTFModel: React.FC<GLTFModelProps> = ({ url, onClick, onHover, onNoHover }) => {
+  const gltf = useLoader(GLTFLoader, url);
+  const meshRef = useRef<THREE.Group>(null);
 
   useFrame(() => {
     if (meshRef.current) {
@@ -28,15 +31,14 @@ const RotatingMesh: React.FC<RotatingMeshProps> = ({color, onClick, onHover, onN
   });
 
   return (
-    <mesh
+    <primitive
       ref={meshRef}
+      object={gltf.scene}
+      scale={[2, 2, 2]}
       onClick={onClick}
       onPointerOver={onHover}
       onPointerLeave={onNoHover}
-    >
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={color} />
-    </mesh>
+    />
   );
 };
 
@@ -51,10 +53,10 @@ export const ThreeScene: React.FC<ThreeSceneProps> = ({
   
   return (
     <div style={{ height: "80vh", width: "100vw" }}>
-      <Canvas>
+      <Canvas camera={{ position: [0, 5, 5] }}>
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
-        <RotatingMesh color={ecosystem.color} onClick={onClick} onHover={onHover} onNoHover={onNoHover} />
+        <GLTFModel url={ecosystem.url} onClick={onClick} onHover={onHover} onNoHover={onNoHover} />
         <OrbitControls />
       </Canvas>
     </div>

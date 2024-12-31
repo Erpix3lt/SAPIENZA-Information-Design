@@ -5,16 +5,16 @@ import { useState } from "react";
 
 export type Ecosystem = { 
   ecosystem: string,
-  gltfPath: string,
+  url: string,
   color: string,
  };
 const ecosystems: Ecosystem[] = [
-  { ecosystem: 'npm', gltfPath: '/path/to/npm.gltf', color: 'red' },
-  { ecosystem: 'maven', gltfPath: '/path/to/maven.gltf', color: 'green' },
-  { ecosystem: 'pypi', gltfPath: '/path/to/pypi.gltf', color: 'blue' },
-  { ecosystem: 'rubygems', gltfPath: '/path/to/rubygems.gltf', color: 'yellow' },
-  { ecosystem: 'debian', gltfPath: '/path/to/debian.gltf', color: 'cyan' },
-  { ecosystem: 'github', gltfPath: '/path/to/github.gltf', color: 'magenta' }
+  { ecosystem: 'npm', url: 'models/strauch.glb', color: 'red' },
+  { ecosystem: 'maven', url: '/models/strauch.glb', color: 'green' },
+  { ecosystem: 'pypi', url: '/models/strauch.glb', color: 'blue' },
+  { ecosystem: 'rubygems', url: '/models/strauch.glb', color: 'yellow' },
+  { ecosystem: 'debian', url: '/models/strauch.glb', color: 'cyan' },
+  { ecosystem: 'github', url: '/models/strauch.glb', color: 'magenta' }
 ];
 
 export default function Home() {
