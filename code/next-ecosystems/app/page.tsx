@@ -23,12 +23,13 @@ export default function Home() {
   const [displayArrows, setDisplayArrows] = useState(true);
   const [ecosystem, setEcosystem] = useState<Ecosystem>(ecosystems[0]);
   const [isViewer, setIsViewer] = useState(false);
+  const [vulnerabilityReport, setVulnerabilityReport] = useState([]);
 
   useEffect(() => {
     async function fetchPosts() {
       const res = await fetch('/api/osv/Pub')
       const data = await res.json()
-      console.log(data)
+      setVulnerabilityReport(data)
     }
     fetchPosts()
   }, [])
@@ -76,6 +77,7 @@ export default function Home() {
         className={`transition-all duration-500 ${isBlurred ? "blur-xl" : ""}`}
       >
         <ThreeScene
+          vulnerabilityReport={vulnerabilityReport}
           ecosystem={ecosystem}
           onClick={handleObjectClick}
           onHover={handleObjectEnter}

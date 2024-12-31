@@ -5,9 +5,11 @@ import { OrbitControls, Stage } from "@react-three/drei";
 import { Ecosystem } from "@/app/page";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { useLoader } from "@react-three/fiber";
+import { Vulnerability } from "@/app/api/osv/[ecosystem]/route";
 
 interface ThreeSceneProps {
   ecosystem: Ecosystem;
+  vulnerabilityReport: Vulnerability[];
   onClick: () => void;
   onHover: () => void;
   onLeave: () => void;
@@ -53,6 +55,7 @@ const GLTFModel: React.FC<GLTFModelProps> = ({ url, onClick, onHover, onLeave })
 };
 
 export const ThreeScene: React.FC<ThreeSceneProps> = ({
+  vulnerabilityReport,
   ecosystem,
   onClick,
   onHover,
@@ -62,7 +65,19 @@ export const ThreeScene: React.FC<ThreeSceneProps> = ({
     <div style={{ height: "80vh", width: "100vw" }}>
       <Canvas>
         <Stage preset="rembrandt" intensity={1} environment="forest">
-          <GLTFModel url={ecosystem.url} onClick={onClick} onHover={onHover} onLeave={onLeave} />
+          <group>
+            {vulnerabilityReport.map((_vulnerability, index) => (
+              <GLTFModel
+                key={index}
+                url={ecosystem.url}
+                onClick={onClick}
+                onHover={onHover}
+                onLeave={onLeave}
+              />
+            ))}
+            <GLTFModel url={ecosystem.url} onClick={onClick} onHover={onHover} onLeave={onLeave} />
+
+          </group>
         </Stage>
         <OrbitControls />
       </Canvas>

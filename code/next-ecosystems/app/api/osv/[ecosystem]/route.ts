@@ -1,6 +1,6 @@
 import { JSDOM } from "jsdom";
 
-type Vulnerability = {
+export type Vulnerability = {
   id: string;
   name: string;
   description: string;
