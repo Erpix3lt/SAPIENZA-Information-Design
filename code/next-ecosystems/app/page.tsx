@@ -95,7 +95,7 @@ export default function Home() {
           >
             {"<"}
           </button>
-            <p className={`text-xs w-fit ${isBlurred ? "" : "underline"}`}>
+            <p className={`text-xs w-fit ${displayArrows ? "" : "underline"}`}>
             {isViewer ? "Click object for more information" : "Click object to enter scene"}
             </p>
           <button

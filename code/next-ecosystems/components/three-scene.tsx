@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { OrbitControls, Stage, Text } from "@react-three/drei";
@@ -30,18 +30,28 @@ const GLTFModel: React.FC<GLTFModelProps> = ({
 }) => {
   const gltf = useLoader(GLTFLoader, url);
   const meshRef = useRef<THREE.Group>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [rotationSpeed, setRotationSpeed] = useState(0.002);
 
   const handlePointerOver = () => {
-    onHover();
+    if (!isHovered) {
+      setIsHovered(true);
+      setRotationSpeed(0.001);
+      onHover();
+    }
   };
 
   const handlePointerLeave = () => {
-    onLeave();
+    if (isHovered) {
+      setIsHovered(false);
+      setRotationSpeed(0.002);
+      onLeave();
+    }
   };
 
   useFrame(() => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.002;
+      meshRef.current.rotation.y += rotationSpeed;
     }
   });
 
@@ -70,15 +80,15 @@ export const ThreeScene: React.FC<ThreeSceneProps> = ({
           <group>
             {Array.isArray(vulnerabilityReport) &&
             vulnerabilityReport.length > 0 ? (
-              vulnerabilityReport.map((_vulnerability, index) => (
+              
                 <GLTFModel
-                  key={index}
+                  
                   url={ecosystem.url}
                   onClick={onClick}
                   onHover={onHover}
                   onLeave={onLeave}
                 />
-              ))
+              
             ) : (
               <Text color="white" anchorX="center" anchorY="middle" fontSize={0.1}>
                 An error occurred.
