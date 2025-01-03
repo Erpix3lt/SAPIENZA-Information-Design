@@ -6,6 +6,8 @@ export type Vulnerability = {
   description: string;
   status: string;
   severity: string;
+  severityScore: number;
+  date: string;
 };
 
 export async function GET(
@@ -52,16 +54,21 @@ export async function GET(
         )
         ?.textContent?.trim() ?? "";
 
-    if (id && name && description && date && status && severity) {
+    const severityString = severity.replace("Severity - ", "").trim();
+    const severityScore: number= parseFloat(severityString.split(' ')[0]);
+
+    if (id && name && description && date && status && severityString && severityScore) {
       vulnerabilityReport.push({
         id,
         name,
-        description: `${description} ${new Date(date).toLocaleDateString(
+        description: `${description}`,
+        date:  `${new Date(date).toLocaleDateString(
           "en-US",
-          { day: "2-digit", month: "short" }
+          { day: "2-digit", month: "2-digit", year: "numeric" }
         )}`,
         status,
-        severity: severity.replace("Severity - ", "").trim(),
+        severity: severityString,
+        severityScore: severityScore,
       });
     }
   });
