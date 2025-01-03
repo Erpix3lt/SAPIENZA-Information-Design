@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { OrbitControls, Stage, Text } from "@react-three/drei";
@@ -30,21 +30,18 @@ const GLTFModel: React.FC<GLTFModelProps> = ({
 }) => {
   const gltf = useLoader(GLTFLoader, url);
   const meshRef = useRef<THREE.Group>(null);
-  const [rotationSpeed, setRotationSpeed] = useState(0.002);
 
   const handlePointerOver = () => {
-    setRotationSpeed(0.001);
     onHover();
   };
 
   const handlePointerLeave = () => {
-    setRotationSpeed(0.003);
     onLeave();
   };
 
   useFrame(() => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += rotationSpeed;
+      meshRef.current.rotation.y += 0.002;
     }
   });
 
@@ -83,8 +80,9 @@ export const ThreeScene: React.FC<ThreeSceneProps> = ({
                 />
               ))
             ) : (
-              <Text color="white" anchorX="center" anchorY="middle">
-                There was an issue loading the data
+              <Text color="white" anchorX="center" anchorY="middle" fontSize={0.1}>
+                An error occurred.
+                Try refreshing.
               </Text>
             )}
           </group>
