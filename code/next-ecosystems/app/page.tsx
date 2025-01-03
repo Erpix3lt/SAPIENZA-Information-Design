@@ -2,6 +2,7 @@
 
 import { ThreeScene } from "@/components/three-scene";
 import { useEffect, useState } from "react";
+import { Vulnerability } from "@/app/api/osv/[ecosystem]/route";
 
 export type Ecosystem = {
   ecosystem: string;
@@ -23,13 +24,13 @@ export default function Home() {
   const [displayArrows, setDisplayArrows] = useState(true);
   const [ecosystem, setEcosystem] = useState<Ecosystem>(ecosystems[0]);
   const [isViewer, setIsViewer] = useState(false);
-  const [vulnerabilityReport, setVulnerabilityReport] = useState([]);
+  const [vulnerabilityReport, setVulnerabilityReport] = useState<Vulnerability[]>([]);
 
   useEffect(() => {
     async function fetchPosts() {
       const res = await fetch('/api/osv/Pub')
       const data = await res.json()
-      setVulnerabilityReport(data)
+      setVulnerabilityReport(data.vulnerabilityReport)
     }
     fetchPosts()
   }, [])
