@@ -22,9 +22,11 @@ export default function Home() {
   const [displayBlur, setDisplayBlur] = useState(true);
   const [isBlurred, setIsBlurred] = useState(true);
   const [displayArrows, setDisplayArrows] = useState(true);
-  const [ecosystem, setEcosystem] = useState<Ecosystem>(ecosystems[0]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_ecosystem, setEcosystem] = useState<Ecosystem>(ecosystems[0]);
   const [isViewer, setIsViewer] = useState(false);
   const [vulnerabilityReport, setVulnerabilityReport] = useState<Vulnerability[]>([]);
+  const [vulnerability, setVulnerability] = useState<Vulnerability>();
 
   useEffect(() => {
     async function fetchPosts() {
@@ -35,10 +37,11 @@ export default function Home() {
     fetchPosts()
   }, [])
 
-  const handleObjectClick = () => {
+  const handleObjectClick = (vulnerability: Vulnerability) => {
     setIsBlurred(false);
     setDisplayBlur(false);
     setIsViewer(true);
+    setVulnerability(vulnerability);
   };
 
   const handleObjectEnter = () => {
@@ -74,13 +77,14 @@ export default function Home() {
     <div
       className={`h-screen w-full flex flex-col justify-between`}
     >
+       {isViewer && <button className="text-xs text-white absolute top-2 left-2 z-10" onClick={() => setIsViewer(false)} >{"< go back"}</button>}
       <div
         className={`transition-all duration-500 ${isBlurred ? "blur-xl" : ""}`}
       >
         <ThreeScene
           vulnerabilityReport={vulnerabilityReport}
-          ecosystem={ecosystem}
-          onClick={handleObjectClick}
+          // ecosystem={ecosystem}
+          onClick={(vulnerability: Vulnerability) => handleObjectClick(vulnerability)}
           onHover={handleObjectEnter}
           onLeave={handleObjectLeave}
         ></ThreeScene>
@@ -107,7 +111,23 @@ export default function Home() {
             {">"}
           </button>
         </div>
-        {isViewer && <div className="text-white text-xs mx-1">Viewer</div>}
+        {isViewer && 
+          <div className="text-white text-xs mx-1 my-2">
+            <div className="grid grid-cols-5 gap-4">
+              <div className="col-span-3">
+                <p>Vulnerability {vulnerability?.id}</p>
+                <p>Description: {vulnerability?.description}</p>
+                <p>Date: {vulnerability?.date}</p>
+                <p>Status: {vulnerability?.status}</p>
+                <p>Severity: {vulnerability?.severity}</p>
+              </div>
+              <div className="col-span-2">
+                <p>Affected packages</p>
+                <p>Package: </p>
+                <p>Version: </p>
+              </div>
+            </div>
+          </div>}
         {!isViewer && (
           <footer className="text-white text-xs my-2 mx-1">
             <div className="grid grid-cols-5 gap-4">
