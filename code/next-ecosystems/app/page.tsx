@@ -19,14 +19,13 @@ const ecosystems: Ecosystem[] = [
 ];
 
 export default function Home() {
-  const [displayBlur, setDisplayBlur] = useState(true);
-  const [isBlurred, setIsBlurred] = useState(true);
   const [displayArrows, setDisplayArrows] = useState(true);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_ecosystem, setEcosystem] = useState<Ecosystem>(ecosystems[0]);
   const [isViewer, setIsViewer] = useState(false);
   const [vulnerabilityReport, setVulnerabilityReport] = useState<Vulnerability[]>([]);
   const [vulnerability, setVulnerability] = useState<Vulnerability>();
+  const [isIntro, setIsIntro] = useState(true);
 
   useEffect(() => {
     async function fetchPosts() {
@@ -38,21 +37,15 @@ export default function Home() {
   }, [])
 
   const handleObjectClick = (vulnerability: Vulnerability) => {
-    setIsBlurred(false);
-    setDisplayBlur(false);
     setIsViewer(true);
     setVulnerability(vulnerability);
   };
 
   const handleObjectEnter = () => {
-    setIsBlurred(false);
     setDisplayArrows(false);
   };
 
   const handleObjectLeave = () => {
-    if (displayBlur) {
-      setIsBlurred(true);
-    }
     setDisplayArrows(true);
   };
 
@@ -77,9 +70,10 @@ export default function Home() {
     <div
       className={`h-screen w-full flex flex-col justify-between`}
     >
-       {isViewer && <button className="text-xs text-white absolute top-2 left-2 z-10" onClick={() => setIsViewer(false)} >{"< go back"}</button>}
+       {isViewer && <button className="text-xs text-white absolute top-2 left-2 z-10 border border-w rounded-full px-1" onClick={() => setIsViewer(false)} >{"< go back"}</button>}
+       {isIntro && <div onClick={() => {setIsIntro(false)}} className="cursor-pointer animate-bounce text-9xl text-white absolute top-20 left-2 z-10 uppercase"><p className="border border-w rounded-full px-1">Explore open source vulnerabilities.</p><p className="border border-w px-1">Click to explore</p></div>}
       <div
-        className={`transition-all duration-500 ${isBlurred ? "blur-xl" : ""}`}
+        className={`transition-all duration-500 ${isIntro ? "blur-xl" : ""}`}
       >
         <ThreeScene
           vulnerabilityReport={vulnerabilityReport}
@@ -90,7 +84,7 @@ export default function Home() {
         ></ThreeScene>
       </div>
       <div>
-        <div className="text-white grid grid-cols-5 gap-4 mx-1 mb-2">
+        <div className="text-white grid grid-cols-5 gap-4 mx-2 mb-2">
           <button
             className={`col-start-2 w-fit transition-all duration-500 leading-none ${
               displayArrows ? "" : "blur-xl"
@@ -112,7 +106,7 @@ export default function Home() {
           </button>
         </div>
         {isViewer && 
-          <div className="text-white text-xs mx-1 my-2">
+          <div className="text-white text-xs mx-2 my-2">
             <div className="grid grid-cols-5 gap-4">
               <div className="col-span-3">
                 <p>Vulnerability {vulnerability?.id}</p>
@@ -129,7 +123,7 @@ export default function Home() {
             </div>
           </div>}
         {!isViewer && (
-          <footer className="text-white text-xs my-2 mx-1">
+          <footer className="text-white text-xs my-2 mx-2">
             <div className="grid grid-cols-5 gap-4">
               <div className="flex flex-col justify-end">
                 <p>© 2024</p>
@@ -147,7 +141,7 @@ export default function Home() {
                 <p>Environments</p>
               </div>
               <div className="col-span-2 flex flex-col justify-end">
-                <p>i:</p>
+                <p>ⓘ</p>
                 <p>
                   This project showcases vulnerabilities in different opensource
                   ecosystems. In order to explore simply choose a ecosystem and
