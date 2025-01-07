@@ -76,7 +76,7 @@ export const ViewerScene: React.FC<ViewerSceneProps> = ({
                 anchorY="middle"
                 fontSize={0.1}
               >
-                An error occurred. Try refreshing.
+                Loading ...
               </Text>
             )}
           </group>

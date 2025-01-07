@@ -20,7 +20,6 @@ const ecosystems: Ecosystem[] = [
 ];
 
 export default function Viewer() {
-  const [displayArrows, setDisplayArrows] = useState(true);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [ecosystem, setEcosystem] = useState<Ecosystem>(ecosystems[0]);
   const [vulnerabilityReport, setVulnerabilityReport] = useState<
@@ -42,11 +41,9 @@ export default function Viewer() {
   };
 
   const handleObjectEnter = () => {
-    setDisplayArrows(false);
   };
 
   const handleObjectLeave = () => {
-    setDisplayArrows(true);
   };
 
   const handleDecrementEcosystem = () => {
@@ -86,25 +83,18 @@ export default function Viewer() {
         ></ViewerScene>
       </div>
       <div>
-        <div className="text-white grid grid-cols-5 gap-4 mx-2 mb-2">
+        <div className="absolute top-3/4 px-2 transform -translate-y-1/2 z-10 flex flex-row w-full justify-between items-center">
           <button
-            className={`col-start-2 w-fit transition-all duration-500 leading-none ${
-              displayArrows ? "" : "blur-xl"
-            }`}
+            className="border rounded-full px-1 text-xs text-white hover:opacity-80"
             onClick={handleDecrementEcosystem}
           >
-            {"<"}
+            {"< prev"}
           </button>
-          <p className={`text-xs w-fit ${displayArrows ? "" : "underline"}`}>
-            Click object for more information
-          </p>
           <button
-            className={`col-start-5 w-fit h-fit transition-all duration-500 leading-none ${
-              displayArrows ? "" : "blur-xl"
-            }`}
+            className="border rounded-full px-1 text-xs text-white hover:opacity-80"
             onClick={handleIncrementEcosystem}
           >
-            {">"}
+            {"next >"}
           </button>
         </div>
 
