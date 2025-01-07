@@ -5,14 +5,14 @@ import { Vulnerability } from "@/app/api/osv/[ecosystem]/route";
 import { Strauch } from "./Strauch";
 import { normalize, sortedVulnerabilityReport } from "./scene-helpers";
 
-interface ThreeSceneProps {
+interface ViewerSceneProps {
   vulnerabilityReport: Vulnerability[];
   onClick: (vulnerability: Vulnerability) => void;
   onHover: () => void;
   onLeave: () => void;
 }
 
-export const ThreeScene: React.FC<ThreeSceneProps> = ({
+export const ViewerScene: React.FC<ViewerSceneProps> = ({
   vulnerabilityReport,
   onClick,
   onHover,
