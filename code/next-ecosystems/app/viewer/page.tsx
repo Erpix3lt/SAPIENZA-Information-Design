@@ -5,18 +5,10 @@ import { useEffect, useState } from "react";
 import { Vulnerability } from "@/app/api/osv/[ecosystem]/route";
 import Link from "next/link";
 
-export type Ecosystem = {
-  ecosystem: string;
-  url: string;
-  color: string;
-};
+export type Ecosystem = string;
+
 const ecosystems: Ecosystem[] = [
-  { ecosystem: "npm", url: "models/strauch.glb", color: "red" },
-  { ecosystem: "maven", url: "/models/bottle.glb", color: "green" },
-  { ecosystem: "pypi", url: "/models/strauch.glb", color: "blue" },
-  { ecosystem: "rubygems", url: "/models/bottle.glb", color: "yellow" },
-  { ecosystem: "debian", url: "/models/strauch.glb", color: "cyan" },
-  { ecosystem: "github", url: "/models/bottle.glb", color: "magenta" },
+ "Pub", "npm", "Cargo", "Maven", "NuGet", "Packagist", "Pypi", "Rubygems", "Go"
 ];
 
 export default function Viewer() {
@@ -31,12 +23,13 @@ export default function Viewer() {
 
   useEffect(() => {
     async function fetchPosts() {
-      const res = await fetch("/api/osv/Pub");
+      const res = await fetch(`/api/osv/${ecosystem}`);
       const data = await res.json();
       setVulnerabilityReport(data.vulnerabilityReport);
+      console.log(data.vulnerabilityReport);
     }
     fetchPosts();
-  }, []);
+  }, [ecosystem]);
 
   const handleObjectClick = (vulnerability: Vulnerability) => {
     setVulnerability(vulnerability);
@@ -76,8 +69,8 @@ export default function Viewer() {
           os-vis
         </p>
         
-        <p className="text-white text-xs ">{ecosystem.ecosystem}</p>
-        <p className="text-white text-xs ">{ecosystem.url}</p>
+        <p className="text-white text-xs ">{ecosystem}</p>
+        <a href="https://osv.dev" className="text-white text-xs ">https://osv.dev</a>
         
       </div>
 
