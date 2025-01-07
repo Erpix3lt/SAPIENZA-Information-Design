@@ -6,6 +6,7 @@ import { Strauch } from "./Strauch";
 import { normalize, sortedVulnerabilityReport } from "./scene-helpers";
 
 interface ViewerSceneProps {
+  autoRotate: boolean;
   vulnerabilityReport: Vulnerability[];
   onClick: (vulnerability: Vulnerability) => void;
   onHover: () => void;
@@ -13,6 +14,7 @@ interface ViewerSceneProps {
 }
 
 export const ViewerScene: React.FC<ViewerSceneProps> = ({
+  autoRotate,
   vulnerabilityReport,
   onClick,
   onHover,
@@ -82,7 +84,7 @@ export const ViewerScene: React.FC<ViewerSceneProps> = ({
           </group>
         </Stage>
         <gridHelper args={[20, 20]} />
-        <OrbitControls autoRotate />
+        <OrbitControls autoRotate={autoRotate} />
       </Canvas>
     </div>
   );

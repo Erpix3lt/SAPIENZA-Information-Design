@@ -25,6 +25,8 @@ export default function Viewer() {
   const [vulnerabilityReport, setVulnerabilityReport] = useState<
     Vulnerability[]
   >([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isRotate, setIsRotate] = useState(true);
   const [vulnerability, setVulnerability] = useState<Vulnerability>();
 
   useEffect(() => {
@@ -40,11 +42,9 @@ export default function Viewer() {
     setVulnerability(vulnerability);
   };
 
-  const handleObjectEnter = () => {
-  };
+  const handleObjectEnter = () => {};
 
-  const handleObjectLeave = () => {
-  };
+  const handleObjectLeave = () => {};
 
   const handleDecrementEcosystem = () => {
     setEcosystem((prev) => {
@@ -66,13 +66,24 @@ export default function Viewer() {
   return (
     <div className={`h-screen w-full flex flex-col justify-between`}>
       <div className="absolute top-2 left-2 z-10 flex flex-row gap-2 items-center">
-        <Link className="border rounded-full px-1 text-xs text-white hover:opacity-80" href="/">{"< back"}</Link>
-        <p className="text-black rounded-full px-1 bg-white text-xs hover:bg-gradient-to-r hover:from-green-400 hover:to-pink-500 hover:text-white ">os-vis</p>      
+        <Link
+          className="border rounded-full px-1 text-xs text-white hover:opacity-80"
+          href="/"
+        >
+          {"< back"}
+        </Link>
+        <p className="text-black rounded-full px-1 bg-white text-xs hover:bg-gradient-to-r hover:from-green-400 hover:to-pink-500 hover:text-white ">
+          os-vis
+        </p>
+        
         <p className="text-white text-xs ">{ecosystem.ecosystem}</p>
         <p className="text-white text-xs ">{ecosystem.url}</p>
+        
       </div>
+
       <div>
         <ViewerScene
+          autoRotate={isRotate}
           vulnerabilityReport={vulnerabilityReport}
           // ecosystem={ecosystem}
           onClick={(vulnerability: Vulnerability) =>
@@ -83,13 +94,31 @@ export default function Viewer() {
         ></ViewerScene>
       </div>
       <div>
-        <div className="absolute top-3/4 px-2 transform -translate-y-1/2 z-10 flex flex-row w-full justify-between items-center">
-          <button
-            className="border rounded-full px-1 text-xs text-white hover:opacity-80"
+        <div className="absolute top-3/4 px-2 transform -translate-y-1/2 z-10 flex flex-row w-full justify-between items-start">
+        <div className="flex flex-col gap-1">
+        <button
+            className="border rounded-full w-fit px-1 text-xs text-white hover:opacity-80"
             onClick={handleDecrementEcosystem}
           >
             {"< prev"}
           </button>
+        <label
+          className={`text-xs border rounded-full px-1 select-none cursor-pointer ${
+            isRotate ? "bg-white text-black" : "bg-black text-white"
+          }`}
+        >
+          <span>enable rotate</span>
+          <input
+            type="checkbox"
+            checked={isRotate}
+            className="hidden"
+            onChange={(e) => {
+              setIsRotate(e.target.checked);
+            }}
+          />
+        </label>
+        </div>
+          
           <button
             className="border rounded-full px-1 text-xs text-white hover:opacity-80"
             onClick={handleIncrementEcosystem}
@@ -98,22 +127,22 @@ export default function Viewer() {
           </button>
         </div>
 
-          <div className="text-white text-xs mx-2 my-2">
-            <div className="grid grid-cols-5 gap-4">
-              <div className="col-span-3">
-                <p>Vulnerability {vulnerability?.id}</p>
-                <p>Description: {vulnerability?.description}</p>
-                <p>Date: {vulnerability?.date}</p>
-                <p>Status: {vulnerability?.status}</p>
-                <p>Severity: {vulnerability?.severity}</p>
-              </div>
-              <div className="col-span-2">
-                <p>Affected packages</p>
-                <p>Package: </p>
-                <p>Version: </p>
-              </div>
+        <div className="text-white text-xs mx-2 my-2">
+          <div className="grid grid-cols-5 gap-4">
+            <div className="col-span-3">
+              <p>Vulnerability {vulnerability?.id}</p>
+              <p>Description: {vulnerability?.description}</p>
+              <p>Date: {vulnerability?.date}</p>
+              <p>Status: {vulnerability?.status}</p>
+              <p>Severity: {vulnerability?.severity}</p>
+            </div>
+            <div className="col-span-2">
+              <p>Affected packages</p>
+              <p>Package: </p>
+              <p>Version: </p>
             </div>
           </div>
+        </div>
       </div>
     </div>
   );
