@@ -15,7 +15,7 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
   onLeave,
 }) => {
   return (
-    <div style={{ height: "80vh", width: "100vw" }}>
+    <div style={{ height: "85vh", width: "100vw" }}>
       <Canvas>
         <Stage preset="rembrandt" intensity={1} environment="forest">
           <Strauch

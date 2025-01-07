@@ -39,7 +39,7 @@ export const ViewerScene: React.FC<ViewerSceneProps> = ({
   vulnerabilityReport = sortedVulnerabilityReport(vulnerabilityReport);
 
   return (
-    <div style={{ height: "80vh", width: "100vw" }}>
+    <div style={{ height: "85vh", width: "100vw" }}>
       <Canvas>
         <Stage preset="rembrandt" intensity={1} environment="forest">
           <group>
@@ -60,7 +60,7 @@ export const ViewerScene: React.FC<ViewerSceneProps> = ({
                   return (
                     <Strauch
                       key={vulnerability.id}
-                      position={[x, 2.5, z]}
+                      position={[x, .5, z]}
                       scale={scale}
                       onClick={() => onClick(vulnerability)}
                       onPointerEnter={handleHover}

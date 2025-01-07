@@ -1,6 +1,7 @@
 "use client";
 
 import { IntroScene } from "@/components/intro-scene";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -10,7 +11,7 @@ export default function Home() {
   const router = useRouter()
 
   const handleObjectClick = () => {
-    //TODO set href to /viewer
+    router.push("/viewer");
   };
 
   const handleObjectEnter = () => {
@@ -23,6 +24,10 @@ export default function Home() {
 
   return (
     <div className={`h-screen w-full flex flex-col justify-between`}>
+       <div className="absolute top-2 left-2 z-10 flex flex-row gap-2 items-center">
+        <Link className="border rounded-full px-1 text-xs text-white hover:opacity-80" href="/viewer">{"viewer >"}</Link>
+        <p className="text-black rounded-full px-1 bg-white text-xs hover:bg-gradient-to-r hover:from-green-400 hover:to-pink-500 hover:text-white ">os-vis</p>
+      </div>
       {isIntro && (
         <div
           onClick={() => {
@@ -38,10 +43,7 @@ export default function Home() {
       )}
       {!isIntro && (
         <div
-          onClick={() => {
-            router.push('/viewer')
-          }}
-          className={`text-9xl text-white absolute top-20 left-2 z-0 uppercase transition-all duration-500  ${isHovering ? "blur-xl" : ""}`}
+          className={`text-9xl text-white absolute top-20 left-2 z-0 uppercase transition-all duration-500  ${isHovering ? "opacity-0" : ""}`}
         >
            <p className="border border-w rounded-full px-1">
             <p className="animate-bounce">click</p>the object

@@ -3,6 +3,7 @@
 import { ViewerScene } from "@/components/viewer-scene";
 import { useEffect, useState } from "react";
 import { Vulnerability } from "@/app/api/osv/[ecosystem]/route";
+import Link from "next/link";
 
 export type Ecosystem = {
   ecosystem: string;
@@ -21,7 +22,7 @@ const ecosystems: Ecosystem[] = [
 export default function Viewer() {
   const [displayArrows, setDisplayArrows] = useState(true);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_ecosystem, setEcosystem] = useState<Ecosystem>(ecosystems[0]);
+  const [ecosystem, setEcosystem] = useState<Ecosystem>(ecosystems[0]);
   const [vulnerabilityReport, setVulnerabilityReport] = useState<
     Vulnerability[]
   >([]);
@@ -67,6 +68,12 @@ export default function Viewer() {
 
   return (
     <div className={`h-screen w-full flex flex-col justify-between`}>
+      <div className="absolute top-2 left-2 z-10 flex flex-row gap-2 items-center">
+        <Link className="border rounded-full px-1 text-xs text-white hover:opacity-80" href="/">{"< back"}</Link>
+        <p className="text-black rounded-full px-1 bg-white text-xs hover:bg-gradient-to-r hover:from-green-400 hover:to-pink-500 hover:text-white ">os-vis</p>      
+        <p className="text-white text-xs ">{ecosystem.ecosystem}</p>
+        <p className="text-white text-xs ">{ecosystem.url}</p>
+      </div>
       <div>
         <ViewerScene
           vulnerabilityReport={vulnerabilityReport}
