@@ -33,11 +33,11 @@ export default function Home() {
           onClick={() => {
             setIsIntro(false);
           }}
-          className="cursor-pointer text-9xl text-white absolute top-20 left-2 z-10 uppercase"
+          className="cursor-pointer text-6xl sm:text-9xl text-white absolute top-20 left-0 mx-2 z-10 uppercase max-w-full"
         >
-          <p className="border border-w rounded-full px-1">
+            <p className="border border-w rounded-full px-1 ">
             Explore open source vulnerabilities.
-          </p>
+            </p>
           <p className="animate-bounce border border-w px-1">Click to explore</p>
         </div>
       )}
@@ -63,10 +63,8 @@ export default function Home() {
         ></IntroScene>
       </div>
       <div>
-        <div className="text-white grid grid-cols-5 gap-4 mx-2 mb-2">
-        </div>
         <footer className="text-white text-xs my-2 mx-2">
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid grid-cols-3 sm:grid-cols-5 gap-4">
             <div className="flex flex-col justify-end">
               <p>© 2024</p>
               <p>Open-Source vulnerabilities</p>

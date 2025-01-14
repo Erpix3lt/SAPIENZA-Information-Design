@@ -12,12 +12,10 @@ const ecosystems: Ecosystem[] = [
 ];
 
 export default function Viewer() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [ecosystem, setEcosystem] = useState<Ecosystem>(ecosystems[0]);
   const [vulnerabilityReport, setVulnerabilityReport] = useState<
     Vulnerability[]
   >([]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isRotate, setIsRotate] = useState(true);
   const [vulnerability, setVulnerability] = useState<Vulnerability>();
 
