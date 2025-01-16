@@ -1,0 +1,52 @@
+[
+  {
+    "part": 1,
+    "duration": "13.10.2000 - 16.03.2003",
+    "occurrences": 1
+  },
+  {
+    "part": 2,
+    "duration": "17.03.2003 - 17.08.2005",
+    "occurrences": 1
+  },
+  {
+    "part": 3,
+    "duration": "18.08.2005 - 19.01.2008",
+    "occurrences": 3
+  },
+  {
+    "part": 4,
+    "duration": "20.01.2008 - 22.06.2010",
+    "occurrences": 17
+  },
+  {
+    "part": 5,
+    "duration": "23.06.2010 - 23.11.2012",
+    "occurrences": 13
+  },
+  {
+    "part": 6,
+    "duration": "24.11.2012 - 27.04.2015",
+    "occurrences": 21
+  },
+  {
+    "part": 7,
+    "duration": "28.04.2015 - 28.09.2017",
+    "occurrences": 1599
+  },
+  {
+    "part": 8,
+    "duration": "29.09.2017 - 01.03.2020",
+    "occurrences": 5580
+  },
+  {
+    "part": 9,
+    "duration": "02.03.2020 - 03.08.2022",
+    "occurrences": 8987
+  },
+  {
+    "part": 10,
+    "duration": "04.08.2022 - 15.01.2025",
+    "occurrences": 10465
+  }
+]
