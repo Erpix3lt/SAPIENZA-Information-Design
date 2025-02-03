@@ -87,6 +87,7 @@ export default function Viewer() {
         currentIndex === 0 ? ecosystems.length - 1 : currentIndex - 1;
       return ecosystems[newIndex];
     });
+    setVulnerability(undefined);
   };
   const handleIncrementEcosystem = () => {
     setEcosystem((prev) => {
@@ -95,6 +96,7 @@ export default function Viewer() {
         currentIndex === ecosystems.length - 1 ? 0 : currentIndex + 1;
       return ecosystems[newIndex];
     });
+    setVulnerability(undefined);
   };
 
   return (
