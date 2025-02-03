@@ -66,26 +66,26 @@ export default function Home() {
         <footer className="text-white text-xs my-2 mx-2">
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-4">
             <div className="flex flex-col justify-end">
-              <p>© 2024</p>
+              <p>© 2025</p>
               <p>Open-Source vulnerabilities</p>
               <p>&nbsp;</p>
-              <p>A data visualisation project</p>
+              <p>Maximilian Schmalenbach & Adrian Baranowski</p>
               <p>
-                <a href="/poster">Poster</a>
+                <a className="underline mr-2" href="/poster">Poster</a>
+                <a className="underline" href="/about">About</a>
               </p>
             </div>
             <div className="flex flex-col justify-end">
-              <p>23000</p>
-              <p>Data samples</p>
-              <p>25</p>
-              <p>Environments</p>
+              <p>Data source: <a className="underline uppercase" href="https://osv.dev/">osv.dev</a> </p>
+              <p>&nbsp;</p>
+              <p>Open Source Software (OSS) are heavily hit by an increase of cyber-attacks and a decrease of government funding.</p>
             </div>
             <div className="col-span-2 flex flex-col justify-end">
               <p>ⓘ</p>
               <p>
                 This project showcases vulnerabilities in different opensource
-                ecosystems. In order to explore simply choose a ecosystem and
-                interact.
+                ecosystems. <span className="text-fuchsia-200">In order to explore simply choose an ecosystem and
+                interact.</span> Different 3D object represent different vulnerabilities, together they create the vulnerability landscape of each ecosystem.
               </p>
               <p>&nbsp;</p>
               <p>
@@ -99,7 +99,7 @@ export default function Home() {
                 projects aim at creating awareness.
               </p>
               <p>&nbsp;</p>
-              <p>Follow the EU´s open source report for more details</p>
+              <p><a className="underline" href="https://openforumeurope.org/open-source-impact-study/">Follow</a> the EU´s open source report for more details</p>
             </div>
           </div>
         </footer>
