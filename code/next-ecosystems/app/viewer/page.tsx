@@ -216,10 +216,16 @@ export default function Viewer() {
                   <p>Severity: {vulnerability.severity}</p>
                 </>
               ) : (
+                <>
                 <p>
                   Click objects to learn more about the ecosystem`s
                   vulnerabilities
                 </p>
+                 <p>&nbsp;</p>
+                 <p>
+                  Use your mouse to navigate the scene.
+                </p>
+                 </>
               )}
             </div>
           </div>
