@@ -2,7 +2,7 @@ import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stage, Text } from "@react-three/drei";
 import { Vulnerability } from "@/app/api/osv/[ecosystem]/route";
-import { Strauch } from "./Strauch";
+import { Bush } from "./models/bush";
 import { normalize, sortedVulnerabilityReport } from "./scene-helpers";
 
 interface ViewerSceneProps {
@@ -60,7 +60,7 @@ export const ViewerScene: React.FC<ViewerSceneProps> = ({
                   const scale = vulnerability.severityScore / 2;
 
                   return (
-                    <Strauch
+                    <Bush
                       key={vulnerability.id}
                       position={[x, .5, z]}
                       scale={scale}

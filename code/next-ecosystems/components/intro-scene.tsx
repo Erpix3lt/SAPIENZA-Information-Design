@@ -1,7 +1,7 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stage } from "@react-three/drei";
-import { Strauch } from "./Strauch";
+import { Bush } from "./models/bush";
 
 interface IntroSceneProps {
   onClick: () => void;
@@ -18,7 +18,7 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
     <div style={{ height: "85vh", width: "100vw" }}>
       <Canvas>
         <Stage preset="rembrandt" intensity={1} environment="forest">
-          <Strauch
+          <Bush
             onClick={onClick}
             onPointerEnter={onHover}
             onPointerLeave={onLeave}
