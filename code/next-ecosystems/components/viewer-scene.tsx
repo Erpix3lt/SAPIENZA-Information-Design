@@ -110,7 +110,7 @@ export const ViewerScene: React.FC<ViewerSceneProps> = ({
             )}
           </group>
         </Stage>
-        <gridHelper args={[20, 20]} />
+        <gridHelper args={[20, 20]}  material-opacity={0.5} material-transparent={true} />
         <OrbitControls autoRotate={autoRotate} />
       </Canvas>
     </div>

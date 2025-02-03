@@ -162,12 +162,18 @@ export default function Viewer() {
               <p>Size of the model & Z-Axis: Severity</p>
             </div>
             <div className="col-span-2 border rounded-lg p-2 border-gray-800">
-              <p>Current vulnerability: <a className="text-black rounded-full px-1 bg-white text-xs hover:opacity-80" href="">{vulnerability?.id}</a></p>
-              <p>Description: {vulnerability?.description}</p>
-              <p>&nbsp;</p>
-              <p>{vulnerability?.date} {vulnerability?.status}</p>
-              <p>Severity: {vulnerability?.severity}</p>
-            </div>
+  {vulnerability ? (
+    <>
+      <p>Current vulnerability: <a className="text-black rounded-full px-1 bg-white text-xs hover:opacity-80" href="">{vulnerability.id}</a></p>
+      <p>Description: {vulnerability.description}</p>
+      <p>&nbsp;</p>
+      <p>{vulnerability.date} {vulnerability.status}</p>
+      <p>Severity: {vulnerability.severity}</p>
+    </>
+  ) : (
+    <p>Click objects to learn more about the ecosystem's vulnerabilities</p>
+  )}
+</div>
           </div>
         </div>
       </div>
