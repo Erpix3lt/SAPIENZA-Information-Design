@@ -4,15 +4,34 @@ import { ViewerScene } from "@/components/viewer-scene";
 import { useEffect, useState } from "react";
 import { Vulnerability } from "@/app/api/osv/[ecosystem]/route";
 import Link from "next/link";
+import { sortedVulnerabilityReport } from "@/components/scene-helpers";
 
-export type Ecosystem = string;
+export type Ecosystem = {
+  name: string;
+  url: string;
+  vulnerabilities: number;
+};
 
 const ecosystems: Ecosystem[] = [
- "Pub", "npm", "Cargo", "Maven", "NuGet", "Packagist", "Pypi", "Rubygems", "Go"
+  { name: "Alpine", url: "https://alpinelinux.org/", vulnerabilities: 0 },
+  { name: "crates.io", url: "https://crates.io/", vulnerabilities: 0 },
+  { name: "GitHub Actions", url: "https://github.com/features/actions", vulnerabilities: 0 },
+  { name: "Go", url: "https://go.dev/", vulnerabilities: 0 },
+  { name: "Hex", url: "https://hex.pm/", vulnerabilities: 0 },
+  { name: "Maven", url: "https://maven.apache.org/", vulnerabilities: 0 },
+  { name: "NuGet", url: "https://www.nuget.org/", vulnerabilities: 0 },
+  { name: "Packagist", url: "https://packagist.org/", vulnerabilities: 0 },
+  { name: "Pub", url: "https://pub.dev/", vulnerabilities: 0 },
+  { name: "PyPI", url: "https://pypi.org/", vulnerabilities: 0 },
+  { name: "Red Hat", url: "https://www.redhat.com/", vulnerabilities: 0 },
+  { name: "Rocky Linux", url: "https://rockylinux.org/", vulnerabilities: 0 },
+  { name: "RubyGems", url: "https://rubygems.org/", vulnerabilities: 0 },
+  { name: "SwiftURL", url: "https://swift.org/package-manager/", vulnerabilities: 0 },
 ];
 
 export default function Viewer() {
   const [ecosystem, setEcosystem] = useState<Ecosystem>(ecosystems[0]);
+  const [timespan, setTimespan] = useState<{ first: string; last: string }>({ first: "-", last: "-" });
   const [vulnerabilityReport, setVulnerabilityReport] = useState<
     Vulnerability[]
   >([]);
@@ -21,10 +40,20 @@ export default function Viewer() {
 
   useEffect(() => {
     async function fetchPosts() {
-      const res = await fetch(`/api/osv/${ecosystem}`);
+      const res = await fetch(`/api/osv/${ecosystem.name}`);
       const data = await res.json();
       setVulnerabilityReport(data.vulnerabilityReport);
-      console.log(data.vulnerabilityReport);
+
+      if (data.vulnerabilityReport.length > 0) {
+        const sortedReport = sortedVulnerabilityReport(data.vulnerabilityReport);
+        
+        setTimespan({
+          first: sortedReport[0].date,
+          last: sortedReport[sortedReport.length - 1].date,
+        });
+      } else {
+        setTimespan({ first: "-", last: "-" });
+      }
     }
     fetchPosts();
   }, [ecosystem]);
@@ -67,7 +96,7 @@ export default function Viewer() {
           os-vis
         </p>
         
-        <p className="text-white text-xs ">{ecosystem}</p>
+        <a href={ecosystem.url} className="text-white text-xs ">{ecosystem.name}</a>
         <a href="https://osv.dev" className="text-white text-xs ">https://osv.dev</a>
         
       </div>
@@ -76,7 +105,6 @@ export default function Viewer() {
         <ViewerScene
           autoRotate={isRotate}
           vulnerabilityReport={vulnerabilityReport}
-          // ecosystem={ecosystem}
           onClick={(vulnerability: Vulnerability) =>
             handleObjectClick(vulnerability)
           }
@@ -121,11 +149,11 @@ export default function Viewer() {
         <div className="text-white text-xs mx-2 my-2">
           <div className="grid grid-cols-5 gap-4">
           <div className="col-span-1 border rounded-lg p-2 border-gray-900">
-              <p>Current Ecosystem: <a className="text-black rounded-full px-1 bg-white text-xs hover:opacity-80" href="">{ecosystem}</a></p>
+              <p>Current Ecosystem: <a className="text-black rounded-full px-1 bg-white text-xs hover:opacity-80" href="">{ecosystem.name}</a></p>
               <p>&nbsp;</p>
-              <p>Timespan: ADD_TIMESPAN</p>
-              <p>Vulnerabilities total: ADD_COUNT_TOTAL</p>
-              <p>About the ecosystem: LINK_DESCRIPTION</p>
+              <p>Timespan: {timespan.first} - {timespan.last}</p>
+              <p>Vulnerabilities total: {ecosystem.vulnerabilities}</p>
+              <p><a href={ecosystem.url}>{ecosystem.url}</a></p>
             </div>
             <div className="col-span-2 border rounded-lg p-2 border-gray-800">
               <p>The following mapping visualises the ecosystems vulnerability data.</p>

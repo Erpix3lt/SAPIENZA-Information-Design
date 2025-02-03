@@ -14,8 +14,8 @@ type GLTFResult = GLTF & {
   materials: object
 }
 
-export function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes } = useGLTF('/wall.glb') as GLTFResult
+export function Wall(props: JSX.IntrinsicElements['group']) {
+  const { nodes } = useGLTF('/models/wall.glb') as GLTFResult
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -28,4 +28,4 @@ export function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('/30.1.2025.glb')
+useGLTF.preload('/models/wall.glb')

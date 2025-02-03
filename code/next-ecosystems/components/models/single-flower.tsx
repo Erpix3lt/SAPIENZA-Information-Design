@@ -14,8 +14,8 @@ type GLTFResult = GLTF & {
   materials: object
 }
 
-export function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes } = useGLTF('/single-flower.glb') as GLTFResult
+export function SingleFlower(props: JSX.IntrinsicElements['group']) {
+  const { nodes } = useGLTF('/models/single-flower.glb') as GLTFResult
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -28,4 +28,4 @@ export function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('/30.1.2025-2.glb')
+useGLTF.preload('/models/single-flower.glb')
