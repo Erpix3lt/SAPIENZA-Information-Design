@@ -85,10 +85,12 @@ export const ViewerScene: React.FC<ViewerSceneProps> = ({
                     normalize(vulnerability.severityScore, 0, 10) *
                       (gridMax - gridMin);
                   const scale = (vulnerability.severityScore || 0) / 2 || 1;
+                  const y = vulnerability.severityScore > 5 ? 0.5 : 2;
+
 
                   return renderModel(vulnerability.severityScore, {
                     key: vulnerability.id,
-                    position: [x, 0.5, z],
+                    position: [x, y, z],
                     scale: scale,
                     onClick: () => onClick(vulnerability),
                     onPointerEnter: handleHover,
