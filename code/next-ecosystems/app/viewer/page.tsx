@@ -120,17 +120,26 @@ export default function Viewer() {
 
         <div className="text-white text-xs mx-2 my-2">
           <div className="grid grid-cols-5 gap-4">
-            <div className="col-span-3">
-              <p>Vulnerability {vulnerability?.id}</p>
-              <p>Description: {vulnerability?.description}</p>
-              <p>Date: {vulnerability?.date}</p>
-              <p>Status: {vulnerability?.status}</p>
-              <p>Severity: {vulnerability?.severity}</p>
+          <div className="col-span-1 border rounded-lg p-2 border-gray-900">
+              <p>Current Ecosystem: <a className="text-black rounded-full px-1 bg-white text-xs hover:opacity-80" href="">{ecosystem}</a></p>
+              <p>&nbsp;</p>
+              <p>Timespan: ADD_TIMESPAN</p>
+              <p>Vulnerabilities total: ADD_COUNT_TOTAL</p>
+              <p>About the ecosystem: LINK_DESCRIPTION</p>
             </div>
-            <div className="col-span-2">
-              <p>Affected packages</p>
-              <p>Package: </p>
-              <p>Version: </p>
+            <div className="col-span-2 border rounded-lg p-2 border-gray-800">
+              <p>The following mapping visualises the ecosystems vulnerability data.</p>
+              <p>&nbsp;</p>
+              <p>X-Axis: Date of documentation</p>
+              <p>Model-Type: Status & Severity</p>
+              <p>Size of the model & Z-Axis: Severity</p>
+            </div>
+            <div className="col-span-2 border rounded-lg p-2 border-gray-800">
+              <p>Current vulnerability: <a className="text-black rounded-full px-1 bg-white text-xs hover:opacity-80" href="">{vulnerability?.id}</a></p>
+              <p>Description: {vulnerability?.description}</p>
+              <p>&nbsp;</p>
+              <p>{vulnerability?.date} {vulnerability?.status}</p>
+              <p>Severity: {vulnerability?.severity}</p>
             </div>
           </div>
         </div>
