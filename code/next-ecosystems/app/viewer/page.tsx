@@ -13,9 +13,9 @@ export type Ecosystem = {
 };
 
 const ecosystems: Ecosystem[] = [
-  { name: "Alpine", url: "https://alpinelinux.org/", vulnerabilities: 0 },
   { name: "crates.io", url: "https://crates.io/", vulnerabilities: 0 },
   { name: "GitHub Actions", url: "https://github.com/features/actions", vulnerabilities: 0 },
+  { name: "Alpine", url: "https://alpinelinux.org/", vulnerabilities: 0 },
   { name: "Go", url: "https://go.dev/", vulnerabilities: 0 },
   { name: "Hex", url: "https://hex.pm/", vulnerabilities: 0 },
   { name: "Maven", url: "https://maven.apache.org/", vulnerabilities: 0 },
@@ -32,14 +32,13 @@ const ecosystems: Ecosystem[] = [
 export default function Viewer() {
   const [ecosystem, setEcosystem] = useState<Ecosystem>(ecosystems[0]);
   const [timespan, setTimespan] = useState<{ first: string; last: string }>({ first: "-", last: "-" });
-  const [vulnerabilityReport, setVulnerabilityReport] = useState<
-    Vulnerability[]
-  >([]);
+  const [vulnerabilityReport, setVulnerabilityReport] = useState<Vulnerability[]>([]);
   const [isRotate, setIsRotate] = useState(true);
   const [vulnerability, setVulnerability] = useState<Vulnerability>();
 
   useEffect(() => {
     async function fetchPosts() {
+      setVulnerabilityReport([]); // Clear the report to show loading text
       const res = await fetch(`/api/osv/${ecosystem.name}`);
       const data = await res.json();
       setVulnerabilityReport(data.vulnerabilityReport);
