@@ -38,7 +38,7 @@ export default function Home() {
             <p className="border border-w rounded-full px-1 ">
             Explore open source vulnerabilities.
             </p>
-          <p className="animate-bounce border border-w px-1">Click to explore</p>
+          <p className="animate-bounce border border-w px-1 text-indigo-700">Click to explore</p>
         </div>
       )}
       {!isIntro && (
@@ -46,7 +46,7 @@ export default function Home() {
           className={`text-9xl text-white absolute top-20 left-2 z-0 uppercase transition-all duration-500  ${isHovering ? "opacity-0" : ""}`}
         >
            <p className="border border-w rounded-full px-1">
-            <p className="animate-bounce">click</p>the object
+            <p className="animate-bounce text-fuchsia-500">click</p>the object
           </p>
           <p className="border border-w px-1">
            to explore further.
