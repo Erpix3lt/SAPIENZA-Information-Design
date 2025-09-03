@@ -1,6 +1,13 @@
 # SAPIENZA-Information-Design
 Archive of everything surrounding the course.
 
+## Outcome
+<video controls width="600">
+  <source src="[https://example.com/video.mp4](https://github.com/Erpix3lt/SAPIENZA-Information-Design/blob/main/docs/Sapienza-Information-Design-Final-Website.mp4)" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
 ## Dates
 trigger
 ## TODOs
