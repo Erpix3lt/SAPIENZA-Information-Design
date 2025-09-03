@@ -2,8 +2,10 @@
 Archive of everything surrounding the course.
 
 ## Outcome
-[Watch video]([https://example.com/video.mp4](https://github.com/Erpix3lt/SAPIENZA-Information-Design/blob/main/docs/Sapienza-Information-Design-Final-Website.mp4))
-
+[Watch video](https://youtu.be/ecbLCFQH210)<video controls width="600">
+  <source src="https://youtu.be/ecbLCFQH210" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ## Dates
 trigger
